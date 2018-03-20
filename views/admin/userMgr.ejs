@@ -1,0 +1,94 @@
+<%- include ../header %>
+
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+
+    <%- include ../tips %>
+
+
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+         <tr>
+             <th scope="col" class="rounded-company">ID</th>
+             <th scope="col" class="rounded">姓名</th>
+             <th scope="col" class="rounded">电话</th>
+             <th scope="col" class="rounded">邮箱</th>
+             <th scope="col" class="rounded">身份证号</th>
+             <th scope="col" class="rounded">角色</th>
+             <!-- <th scope="col" class="rounded"></th> -->
+             <th scope="col" class="rounded-q4">查看/编辑</th>
+         </tr>
+     </thead>
+     <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+
+         </tr>
+     </tfoot>
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+             <!-- <td><input type="checkbox" name="" /></td> -->
+             <td><%= rows[i]["User_Id"] %></td>
+             <td><%= rows[i]["Name"] %></td>
+             <td><%= rows[i]["Mobile"] %></td>
+             <td><%= rows[i]["Email"] %></td>
+             <td><%= rows[i]["ID_Card"] %></td>
+             <td>
+                <% if(rows[i]["Role"]==0) { %>
+                <%= "管理员" %>
+                <% } else if(rows[i]["Role"]==0.5) { %>
+                <%= "主管领导" %>
+                <% } else if(rows[i]["Role"]==1) { %>
+                <%= "科研宣教科人员" %>
+                <% } else if(rows[i]["Role"]>=2) { %>
+                <%= "普通用户" %>
+                <% } %>
+            </td>
+             <td><a href="userDet?userid=<%= rows[i]["User_Id"] %>"><img src="/images/in/images/user_edit.png" alt="" title="" border="0" /></a></td>
+             <!-- <td><a href="#" class="ask"><img src="/images/in/images/trash.png" alt="" title="" border="0" /></a></td> -->
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= page - 1 %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+            
+                    
+<%- include ../footer %>

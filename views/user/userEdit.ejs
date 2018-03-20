@@ -1,0 +1,87 @@
+                    
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+        <h2><%= menu.title %></h2>
+
+        <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+         
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="username">用户名:</label></dt>
+                        <dd><input type="text" name="username" id="username" size="54" disable="false" value="<%= row['Name'] %>"/></dd>
+                    </dl>                    
+                    
+                    <dl>
+                        <dt><label for="gender">性别:</label></dt>
+                        <dd>
+                            <select size="1" name="gender" id="gender" >
+                                <option value="0" <% if(row['Sex'] == 0){ %><%= "selected='selected'" %><% } %>>男</option>
+                                <option value="1" <% if(row['Sex'] == 1){ %><%= "selected='selected'" %><% } %>>女</option>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="dep">单位:</label></dt>
+                        <dd><input type="text" name="dep" id="dep" size="54" disable="false" value="<%= row['Dep'] %>" placeholder="如‘华东师范大学’" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="secdep">二级单位:</label></dt>
+                        <dd><input type="text" name="secdep" id="secdep" size="54" disable="false" value="<%= row['Sec_Dep'] %>" placeholder="如‘地理科学学院’" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="email">邮件:</label></dt>
+                        <dd><input type="text" name="email" id="email" size="54" disable="false" value="<%= row['Email'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="mobile">电话:</label></dt>
+                        <dd><input type="text" name="mobile" id="mobile" size="54" disable="false" value="<%= row['Mobile'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="ID_Card">身份证:</label></dt>
+                        <dd><input type="text" name="ID_Card" id="ID_Card" size="54" disable="false" value="<%= row['ID_Card'] %>"/></dd>
+                    </dl>
+
+
+                    <dl>
+                        <dt><label for="newpwd">新密码:</label></dt>
+                        <dd><input type="password" name="newpwd" id="newpwd" size="54" disable="false" placeholder="不修改请勿填写" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="newpwdcfm">确认密码:</label></dt>
+                        <dd><input type="password" name="newpwdcfm" id="newpwdcfm" size="54" disable="false" placeholder="再次输入新密码，不修改请勿填写" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="addr">住址:</label></dt>
+                        <dd><textarea name="addr" id="addr" rows="5" cols="36" ><%= row['Addr'] %></textarea></dd>
+                    </dl>
+
+                    <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="保存" />
+                        <input type="submit" name="operate" id="submit" value="注销账户" onclick="subChk('注销当前账户')" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                    </dl>
+
+
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

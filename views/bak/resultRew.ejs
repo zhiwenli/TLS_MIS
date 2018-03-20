@@ -1,0 +1,65 @@
+<%- include header %>
+    
+    <div class="right_content">
+        
+     <h2>科研工作申报</h2>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+
+            <dl>
+                <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+            </dl>
+                
+         
+                <fieldset>
+                    <dl>
+                        <dt><label for="download">下载合同:</label></dt>
+                        <% if(result_file){ %>
+                        <dd><a href="<%= result_file %>" name="download" id="download" align="center">点击下载用户合同</a></dd>
+                        <% }else{ %>
+                        <dd><label id="download">用户未上传合同扫描件</label></dd>
+                        <% } %>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="result_ex">邮寄信息:</label></dt>
+                        <dd><textarea name="result_ex" id="result_ex" rows="5" cols="36" readonly="true" ><% if(row['Result_Ex']){ %><%= row['Result_Ex'] %><% }else{ %><%= "用户未提交邮寄信息" %><% } %></textarea></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="cur_con">当前递交状态:</label></dt>
+                        <dd><input type="text" name="cur_con" id="cur_con" value="<% if(row['Result_Ok'] == 1){ %><%= "已递交 / 审核通过" %><% }else { %><%= "未递交 / 审核不通过" %><% } %>" readonly="true" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="result_ok" >编辑成果递交状态:</label></dt>
+                        <dd>
+                            <select size="1" name="result_ok" id="result_ok" >
+                                    <option value="1" <% if(row['Result_Ok'] == 1){ %><%= "selected='selected'" %><% } %>>已递交 / 审核通过</option>
+                                    <option value="0" <% if(row['Result_Ok'] == 0){ %><%= "selected='selected'" %><% } %>>未递交 / 审核不通过</option>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt></dt>
+                        <dd></dd>
+                    </dl>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="确定" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+                    
+<%- include footer %>

@@ -1,0 +1,50 @@
+<%- include header %>
+    
+    <div class="right_content">            
+        
+     <h2>科研工作申报</h2>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+
+            <dl>
+                <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+            </dl>
+                
+         
+                <fieldset>
+                    <dl>
+                        <dt><label for="download">下载合同:</label></dt>
+                        <% if(contract){ %>
+                        <dd><a href="<%= contract %>" name="download" id="download" align="center">点击下载用户合同</a></dd>
+                        <% }else{ %>
+                        <dd><label id="download">用户未上传合同扫描件</label></dd>
+                        <% } %>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="contract_ex">邮寄信息:</label></dt>
+                        <dd><textarea name="contract_ex" id="contract_ex" rows="5" cols="36" readonly="true" ><% if(row['Contract_Ex']){ %><%= row['Contract_Ex'] %><% }else{ %><%= "用户未提交邮寄信息" %><% } %></textarea></dd>
+                    </dl>
+
+                    <dl>
+                        <dt></dt>
+                        <dd></dd>
+                    </dl>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="通过" onClick="passcfm()" />
+                        <input type="submit" name="operate" id="submit" value="不通过" onClick="stopcfm()" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include footer %>

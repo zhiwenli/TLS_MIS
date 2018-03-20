@@ -1,0 +1,66 @@
+<%- include header %>
+    
+    <div class="right_content">            
+        
+
+           
+     <h2>Nice Form example</h2>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return fileChk();" enctype="multipart/form-data">
+                         <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="download">下载合同:</label></dt>
+                        <dd><a href="<%= contract %>" name="download" id="download" align="center">点击下载</a></dd>
+                    </dl>
+
+                <fieldset>
+                    
+                    <dl >
+                        <dt><label for="uploadfile">上传扫描件:</label></dt>
+                        <dd><input type="file" name="uploadfile" id="uploadfile" accept=".jp2,.jp1,.jpeg,.jpg,.tiff,.tif,.bmp,.pdf"/></dd>
+                        <% if(row["Contract_Img"]){ %>
+                            <p id="is_uploaded" ><%= "已上传" %></p>
+                        <% } %>
+                    </dl>
+
+                     <dl class="submit">
+                        <a href="/undo"><input type="button" value="返回"></input></a>
+                        <input type="submit" name="operate" id="submit" value="提交扫描件" />
+                     </dl>
+                     
+                     
+                    
+                </fieldset>
+                
+         </form>
+
+        <form action="#" method="post" class="niceform" onsubmit="return conExChk();">
+         
+                <fieldset>
+                    
+                    <dl>
+                        <dt><label for="contract_ex">邮寄信息:</label></dt>
+                        <dd><textarea name="contract_ex" id="contract_ex" rows="5" cols="36" placeholder="请输入快递公司及单号(若已上传扫描件则无需填写该项)" ><% if(row['Contract_Ex']){ %><%= row['Contract_Ex'] %><% } %></textarea></dd>
+                    </dl>
+                    
+                    
+                     <dl class="submit">
+                        <a href="/undo"><input type="button" value="返回"></input></a>
+                        <input type="submit" name="operate" id="submit" value="提交快递信息" />
+                     </dl>
+                     
+                     
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include footer %>

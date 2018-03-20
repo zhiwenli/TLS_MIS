@@ -1,0 +1,103 @@
+<%- include header %>
+      
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+
+    <%- include tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return repChk();">
+
+                
+         
+                <fieldset>
+                    <% if(row){ %>
+                    <dl>
+                        <dt><label for="sr_id">编号:</label></dt>
+                        <input type="text" name="sr_id" id="sr_id" value="<% if(row) { %><%= row['SR_Id'] %><% } %>" placeholder="无需手动填写" readonly="true" /></dd>
+                    </dl>
+                    <% } %>
+
+                    <dl>
+                        <dt><label for="title">主题:</label></dt>
+                        <dd><input type="text" name="title" id="title" size="54" maxlength="40" value="<% if(row) { %><%= row['SR_Title'] %><% } %>" /></dd>
+                    </dl>
+
+                    
+
+                    <dl>
+                        <dt><label for="place">地点:</label></dt>
+                        <dd><input type="text" name="place" id="place" size="54" maxlength="100" value="<% if(row) { %><%= row['Place'] %><% } %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="route">路线:</label></dt>
+                        <dd><input type="text" name="route" id="route" size="54"  maxlength="100" value="<% if(row) { %><%= row['Route'] %><% } %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="acmdt" >住宿方式:</label></dt>
+                        <dd>
+                            <select size="1" name="acmdt" id="acmdt" >
+                                <% for(var i = 0; i < rows_acmdt.length; i++) { %>
+                                    <option value="<%= rows_acmdt[i]['DD_Value'] %>" <% if(row['Acmdt'] == rows_acmdt[i]['Value']){ %><%= "selected='selected'" %><% } %>><%= rows_acmdt[i]['DD_Value'] %>
+                                    </option>
+                                <% } %>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="peop_count">人数:</label></dt>
+                        <dd><input type="number" min="1" max="1000" step="1" name="peop_count" id="peop_count" size="54" value="<% if(row) { %><%= row['Peop_Count'] %><% }else{ %><%= '1' %><% } %>"/></dd>
+                    </dl>
+
+                    <!-- 注意调整格式为"2014-01-13" -->
+                    <dl>
+                        <dt><label for="start_time">开始日期:</label></dt>
+                        <dd><input type="text" name="start_time" id="start_time" size="54" value="<% if(row) { %><%= row['Start_Time'] %><% } %>" placeholder="如：2015-12-12 9:00:00"/></dd>
+                    </dl>
+
+                    
+
+                    <dl>
+                        <dt><label for="end_time">结束日期:</label></dt>
+                        <dd><input type="text" name="end_time" id="end_time" size="54" value="<% if(row) { %><%= row['End_Time'] %><% } %>" placeholder="如：2015-12-12 9:00:00"/></dd>
+                    </dl>
+
+                  
+
+                    <dl>
+                        <dt><label for="submit_time">成果提交日期:</label></dt>
+                        <dd><input type="text" name="submit_time" id="submit_time" size="54" disable="false" value="<% if(row) { %><%= row['Submit_Time'] %><% } %>" placeholder="如：2015-12-12 9:00:00"/></dd>
+                        <p><small>最迟何时提交本次任务产生的科研成果</small></p>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="spc_require">特殊需求:</label></dt>
+                        <dd><textarea type="text" name="spc_require" id="spc_require" rows="5" cols="36" maxlength="100" value="<% if(row) { %><%= row['Spc_Require'] %><% } %>"></textarea></dd>
+                    </dl>
+
+
+                    <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                    </dl>
+
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="保存" />
+                        <input type="submit" name="operate" id="submit" value="删除" onClick="delcfm()" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include footer %>

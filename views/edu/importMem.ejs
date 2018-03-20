@@ -1,0 +1,58 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+     <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return fileChk();" enctype="multipart/form-data">
+            
+            <fieldset>
+
+                <dl>
+                    <dt><label for="download">下载人员名单模板:</label></dt>
+                    <dd>
+                        <button type="button" onclick="downloadfile('<%= memListTemplate %>')">点击下载</button>
+                    </dd>
+                </dl>
+
+<p>&nbsp</p><p>&nbsp</p><p>&nbsp</p>
+
+                <dl >
+                    <dt><label for="uploadfile">选择名单文件:</label></dt>
+                    <dd><input type="file" name="uploadfile" id="uploadfile" accept=".xls,.xlsx" title='' /></dd>
+                </dl>
+
+                <dl>
+                    <dt><label></label></dt>
+                    <dd><input type="submit" name="operate" id="submit" value="提交文件" title='' /></dd>
+                </dl>
+
+            </fieldset>
+                
+         </form>
+
+
+        <form action="#" method="post" class="niceform">
+            
+            <fieldset>
+
+                <dl>
+                    <dt><label for="download">&nbsp</label></dt>
+                    <dd>
+                        <dd><input type="submit" name="operate" id="submit" value="返回" title='' /></dd>
+                    </dd>
+                </dl>
+
+
+            </fieldset>
+                
+         </form>
+
+
+        </div>  
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

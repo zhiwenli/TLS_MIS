@@ -1,0 +1,102 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+
+                
+         
+                <fieldset>
+                    <input type="hidden" name="srid" id="srid" value="<% if(row) { %><%= row['SR_Id'] %><% } %>"/>
+
+                    <dl>
+                        <dt><label for="title">主题:</label></dt>
+                        <dd><input type="text" name="title" id="title" size="54" required="required" maxlength="40" value="<% if(row) { %><%= row['SR_Title'] %><% } %>" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="place">地点:</label></dt>
+                        <dd><input type="text" name="place" id="place" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Place'] %><% } %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="route">路线:</label></dt>
+                        <dd><input type="text" name="route" id="route" size="54" required="required" maxlength="100" value="<% if(row) { %><%= row['Route'] %><% } %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="acmdt" >住宿方式:</label></dt>
+                        <dd>
+                            <select size="1" name="acmdt" id="acmdt" >
+                                <% for(var i = 0; i < rows_acmdt.length; i++) { %>
+                                    <option value="<%= rows_acmdt[i]['DD_Value'] %>" <% if(row['Acmdt'] == rows_acmdt[i]['Value']){ %><%= "selected='selected'" %><% } %>><%= rows_acmdt[i]['DD_Value'] %>
+                                    </option>
+                                <% } %>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="start_datetime">开始日期:</label></dt>
+                        <dd>
+                            <input type="number" min="2016" max="2050" step="1" name="start_year" id="start_year" style="width:50px;" required="required" value="<%= start_datetime[0] %>" />年 
+                            <input type="number" min="1" max="12" step="1" name="start_month" id="start_month" style="width:35px;" required="required" value="<%= start_datetime[1] %>" />月 
+                            <input type="number" min="1" max="31" step="1" name="start_day" id="start_day" style="width:35px;" required="required" value="<%= start_datetime[2] %>" />日
+                            &nbsp&nbsp
+                            <input type="number" min="0" max="23" step="1" name="start_hour" id="start_hour" style="width:35px;" required="required" value="<%= start_datetime[3] %>" />时 
+                            <input type="number" min="0" max="59" step="1" name="start_minute" id="start_minute" style="width:35px;" required="required" value="<%= start_datetime[4] %>" />分
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="end_datetime">结束日期:</label></dt>
+                        <dd>
+                            <input type="number" min="2016" max="2050" step="1" name="end_year" id="end_year" style="width:50px;" required="required" value="<%= end_datetime[0] %>" />年 
+                            <input type="number" min="1" max="12" step="1" name="end_month" id="end_month" style="width:35px;" required="required" value="<%= end_datetime[1] %>" />月 
+                            <input type="number" min="1" max="31" step="1" name="end_day" id="end_day" style="width:35px;" required="required" value="<%= end_datetime[2] %>" />日
+                            &nbsp&nbsp
+                            <input type="number" min="0" max="23" step="1" name="end_hour" id="end_hour" style="width:35px;" required="required" value="<%= end_datetime[3] %>" />时 
+                            <input type="number" min="0" max="59" step="1" name="end_minute" id="end_minute" style="width:35px;" required="required" value="<%= end_datetime[4] %>" />分
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="submit_datetime">成果提交日期:</label></dt>
+                        <dd>
+                            <input type="number" min="2016" max="2050" step="1" name="submit_year" id="submit_year" style="width:50px;" required="required" value="<%= submit_datetime[0] %>" />年 
+                            <input type="number" min="1" max="12" step="1" name="submit_month" id="submit_month" style="width:35px;" required="required" value="<%= submit_datetime[1] %>" />月 
+                            <input type="number" min="1" max="31" step="1" name="submit_day" id="submit_day" style="width:35px;" required="required" value="<%= submit_datetime[2] %>" />日
+                            &nbsp&nbsp
+                            <input type="number" min="0" max="23" step="1" name="submit_hour" id="submit_hour" style="width:35px;" required="required" value="<%= submit_datetime[3] %>" />时 
+                            <input type="number" min="0" max="59" step="1" name="submit_minute" id="submit_minute" style="width:35px;" required="required" value="<%= submit_datetime[4] %>" />分
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="act_content">活动内容:</label></dt>
+                        <dd><textarea type="text" name="act_content" id="act_content" rows="5" cols="36" maxlength="1000" value=""><% if(row) { %><%= row['Act_Content'] %><% } %></textarea></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="spc_require">特殊需求:</label></dt>
+                        <dd><textarea type="text" name="spc_require" id="spc_require" rows="3" cols="36" maxlength="100" value=""><% if(row) { %><%= row['Spc_Require'] %><% } %></textarea></dd>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="下一步" onclick="repChk()"/>
+                        <input type="submit" name="operate" id="submit" value="删除" onclick="delcfm()" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

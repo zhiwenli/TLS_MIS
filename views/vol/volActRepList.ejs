@@ -1,0 +1,92 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+         <tr>
+             <th scope="col" class="rounded-company">ID</th>
+             <th scope="col" class="rounded">活动名称</th>
+             <th scope="col" class="rounded">开始时间</th>
+             <th scope="col" class="rounded">审核状态</th>
+             <th scope="col" class="rounded-q4">详情/操作</th>
+         </tr>
+     </thead>
+     <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+         </tr>
+     </tfoot>
+
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+            <td><%= rows[i]["Vol_Act_Id"] %></td>
+            <td><%= rows[i]["Title"] %></td>
+            <td><%= rows[i]["Start_Time"] %></td>
+            <td>
+                <% if(rows[i]["Vol_Sta"]==2) { %>
+                <img src="/images/in/images/valid.png" alt="" title="已通过审核" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Vol_Sta"]==3) { %>
+                <img src="/images/in/images/warning.png" alt="" title="待审核" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Vol_Sta"]==4) { %>
+                <img src="/images/in/images/error.png" alt="" title="审核已拒绝" border="0" height=16 width=16 />
+                <% } else { %>
+                <%= "异常" %>
+                <% } %>
+            </td>
+
+            <td>
+                <a href="/vol/volActSta?vol_act_id=<%= rows[i]["Vol_Act_Id"] %>">
+                <img src="/images/in/images/user_edit.png" alt="" title="" border="0" />
+                </a>
+            </td>
+
+             <!-- <td><a href="#" class="ask"><img src="/images/in/images/trash.png" alt="" title="" border="0" /></a></td> -->
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+<!-- <a href="/vol/volActPub" class="bt_green"><span class="bt_green_lft"></span><strong>--</strong><span class="bt_green_r"></span></a>-->
+ <!-- <a href="#" class="bt_red"><span class="bt_red_lft"></span><strong>Delete items</strong><span class="bt_red_r"></span></a>  -->
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

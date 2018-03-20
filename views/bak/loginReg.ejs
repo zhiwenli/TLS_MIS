@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title><%= title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Login and Reg" />
+        <meta name="keywords" content="html5,天目山" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="/stylesheets/LoginRegistration/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/stylesheets/LoginRegistration/css/style.css" />
+				<link rel="stylesheet" type="text/css" href="/stylesheets/LoginRegistration/css/animate-custom.css" />
+				 <script src="/javascripts/confirm.js"></script>
+ <script type="text/javascript" src="/javascripts/md5.js"></script>
+    </head>
+    <body>
+</div>  
+			<section>
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form action="#" autocomplete="on" method="post" onsubmit="return loginChk();"> 
+                                <h1>浙江天目山国家级自然保护区科研教育管理系统</h1> 
+<% if(loginTips) { %> 
+<p align='center'><font color="red"><%= loginTips %></font></p>
+<% } %>
+                                <p> 
+                                    <label for="username" class="uname" data-icon="u" >账号</label>
+                                    <input id="username" name="username" required="required" type="text" placeholder="请输入邮箱或电话号码"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" data-icon="p">密码</label>
+                                    <input id="password" name="password" required="required" type="password"  placeholder="请输入您的密码"/> 
+                                </p>
+                                <p class="login button"> 
+                                    <input type="submit" name="operate" value="登录" /> 
+								</p>
+                                <p class="change_link">
+									还没有注册？
+									<a href="#toregister" class="to_register">立即注册</a>
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            <form  action="#" autocomplete="on" method="post" onsubmit="return regChk();"> 
+                                <h1> 注册 </h1>
+
+                                <p align='center'><small><font color="red">*</font>号标记项为必填</small></p>
+
+                                <% if(regTips) { %> 
+                                <p align='center'><font color="red"><%= regTips %></font></p>
+                                <% } %>
+
+                                <p>
+                                    <label for="usernamesignup" class="uname" data-icon="u"> 姓名<font color="red">*</font></label>
+                                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="真实姓名" />
+                                </p>
+
+                                <!-- <dl> -->
+                                    <!-- <dt> -->
+                                        <label for="gender" class="yousex" data-icon="e" >性别:</label>
+                                    <!-- </dt> -->
+                                    <!-- <dd> -->
+                                        <select size="1" name="gender" id="gender" >
+                                        <option value="0" >男</option>
+                                        <option value="1" >女</option>
+                                        </select>
+                                  <!--   </dd>
+                                </dl> -->
+
+								<p> 
+                                    <label for="sexsignup" class="yousex" data-icon="e" > 性别<font color="red">*</font></label>
+                                    <input id="sexsignup" name="sexsignup" required="required" type="text" placeholder="男 |女"/> 
+                                </p>
+								<p> 
+                                    <label for="mobile" class="youmobile" data-icon="e" > 电话<font color="red">*</font></label>
+                                    <input id="mobilesignup" name="mobilesignup" required="required" type="text" placeholder="中国大陆地区移动电话"/> 
+                                </p>
+								<p> 
+                                    <label for="ID_Cardsignup" class="youID_Card" data-icon="e" > 身份证号<font color="red">*</font></label>
+                                    <input id="ID_Cardsignup" name="ID_Cardsignup" required="required" type="text" placeholder="二代身份证编号"/> 
+                                </p>
+								<p> 
+                                    <label for="emailsignup" class="youmail" data-icon="e" > 邮箱地址<font color="red">*</font></label>
+                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="邮箱地址"/> 
+                                </p>
+                                <p> 
+                                    <label for="depsignup" class="youdep" data-icon="e" > 单位<font color="red">*</font></label>
+                                    <input id="depsignup" name="depsignup" required="required" type="email" placeholder="工做单位"/> 
+                                </p>
+                                <p> 
+                                    <label for="secdepsignup" class="yousecdep" data-icon="e" > 二级单位</label>
+                                    <input id="secdepsignup" name="secdep" type="email" placeholder="所属二级单位"/> 
+                                </p>
+                                <p> 
+                                    <label for="addrsignup" class="youaddr" data-icon="e" > 住址</label>
+                                    <input id="addrsignup" name="addrsignup" required="required" type="text" placeholder="家庭住址或工作地址"/> 
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup" class="youpasswd" data-icon="p">密码<font color="red">*</font></label>
+                                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="可以包含大小写字母、数字和符号"/>
+                                </p>
+                                <p>
+                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">确认密码<font color="red">*</font></label>
+                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="可以包含大小写字母、数字和符号"/>
+                                </p>
+                                <p class="signin button"> 
+									<input type="submit" name="operate" value="注册"/> 
+								</p>
+                                <p class="change_link">
+									已经是会员？
+									<a href="#tologin" class="to_register"> 去登录 </a>
+								</p>
+                            </form>
+                        </div>
+						
+                    </div>
+                </div>  
+            </section>
+        </div>
+    </body>
+</html>

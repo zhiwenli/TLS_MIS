@@ -1,0 +1,73 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+     <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return fileChk();" enctype="multipart/form-data">
+                    <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="download">下载合同及打印名单:</label></dt>
+                        <dd>
+                            <button type="button" onclick="downloadfile('<%= contract %>')">下载工作管理合同</button>
+                            <button type="button" onclick="downloadfile('printMem?srid=<%= row['EDU_Id'] %>')">打印活动成员名单</button>
+                        </dd>
+                    </dl>
+
+                <fieldset>
+                    
+                    <dl >
+                        <dt><label for="uploadfile">上传合同扫描件及成员名单:</label></dt>
+                        <dd><input type="file" name="uploadfile" id="uploadfile" accept=".tar,.zip,.tar.gz" title='请打包压缩后上传' />
+                        <% if(row["Contract_Img"] != ""){ %>
+                            <p id="is_uploaded" >请压缩为单个文件后上传。 <% if(row["Contract_Img"] != null){ %><%= "  已上传"+row["Contract_Img"]+"文件" %><% } %></p>
+                        <% } %></dd>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="提交文件" title='请打包压缩后上传' />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+
+        <form action="#" method="post" class="niceform" onsubmit="return conExChk();">
+         
+                <fieldset>
+                    
+                    <dl>
+                        <dt><label for="contract_ex">邮寄信息:</label></dt>
+                        <dd><textarea name="contract_ex" id="contract_ex" rows="5" cols="36" placeholder="请输入快递公司及单号(若已上传扫描件则无需填写该项)" ><% if(row['Contract_Ex']){ %><%= row['Contract_Ex'] %><% } %></textarea></dd>
+                    </dl>
+                    
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="提交快递信息" />
+                     </dl>
+                     
+                </fieldset>
+                
+         </form> 
+
+        <form align="center" action="#" method="post" class="niceform">
+
+            <fieldset>
+                <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="撤销活动申请" />
+                    <input type="submit" name="operate" id="submit" value="返回" />
+                </dl>
+            </fieldset>
+
+        </form>
+
+        </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

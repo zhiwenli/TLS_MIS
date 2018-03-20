@@ -1,0 +1,96 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+        <tr>
+            <th scope="col" class="rounded-company">ID</th>
+            <th scope="col" class="rounded">姓名</th>
+            <th scope="col" class="rounded">类别</th>
+            <th scope="col" class="rounded">身份证编号</th>
+            <th scope="col" class="rounded">证件</th>
+            <th scope="col" class="rounded">证件编号</th>
+            <th scope="col" class="rounded">完成培训？</th>
+            <% if(menu.userrole <=1 && !eduFinished){ %>
+            <th scope="col" class="rounded-q4">更改</th>
+            <% } %>
+        </tr>
+        </thead>
+
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+            <td><%= beforeRec+i+1 %></td>
+            
+            <td style="text-decoration:underline; cursor:pointer" onclick="openDialog('/memDet?memid=<%= rows[i]["Mem_Id"] %>')"><%= rows[i]["Mem_Name"] %><small><font color="red"><% if(beforeRec+i == 0){ %><%= "(负责人)" %><% } %><font></small></td>
+            <td><%= rows[i]["Mem_Type"] %></td>
+            <td><%= rows[i]["Mem_ID_Card"] %></td>
+            <td><%= rows[i]["Mem_Cre_Type"] %></td>
+            <td><%= rows[i]["Mem_Cre_Id"] %></td>
+            <td>
+                <% if(rows[i]["Train_Ok"] == 0) { %>
+                <img src="/images/in/images/error.png" alt="" title="未培训" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Train_Ok"] == 1 ) { %>
+                <img src="/images/in/images/valid.png" alt="" title="已培训" border="0" height=16 width=16 /></a>
+                <% }else{ %>
+                <img src="/images/in/images/warning.png" alt="" title="状态异常<%= rows[i]['Train_Ok'] %>" border="0" height=16 width=16 /></a>
+                <% } %>
+            </td>
+
+            <% if(menu.userrole <=1 && !eduFinished){ %>
+            <td>
+                <a href="/edu/eduTrainStaEdit?memid=<%= rows[i]["Mem_Id"] %>&trainok=<%= rows[i]["Train_Ok"] %>">
+                <img src="/images/in/images/user_edit.png" alt="" title="点击更改培训状态" border="0" />
+                </a>
+            </td>
+            <% } %>
+
+             <!-- <td><a href="#" class="ask"><img src="/images/in/images/trash.png" alt="" title="" border="0" /></a></td> -->
+         </tr>
+        <% } %>
+   
+     </tbody>
+ </table>
+
+    <a href="eduRepSta?srid=<%= srid %>" class="bt_green"><span class="bt_green_lft"></span><strong>返回</strong><span class="bt_green_r"></span></a>
+<% if(menu.userrole <=1 && !eduFinished){ %>
+    <a href="eduActFinish?srid=<%= srid %>" class="bt_red"><span class="bt_red_lft" onclick="clickCfm('确认结束本次科普教育实习活动培训任务？活动线上部分将标记为结束，已培训的活动成员可继续前往进行实习活动。')" ></span><strong>结束培训</strong><span class="bt_red_r"></span></a>
+<% } %>
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?srid=<%= srid %>&page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?srid=<%= srid %>&page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

@@ -1,0 +1,52 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+
+    <%- include ../tips %>
+
+    <% for(var i = 0; i < rows.length; i++){ %>
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+            <h4><a href="/vol/volActRep?vol_act_id=<%= rows[i]['Vol_Act_Id'] %>"><%= rows[i]['Title'] %></a></h4>
+            
+            <ul>
+                <li>开始时间：<strong><%= rows[i]['Start_Time'] %></strong></li>
+                <li>结束时间：<strong><%= rows[i]['End_Time'] %></strong></li>
+                <li>地点：<strong><%= rows[i]['Place'] %></strong></li>
+                <li>需求志愿者人数：<strong><% if(rows[i]['Dema_Vol'] != 0){ %><%= rows[i]['Dema_Vol'] %><% }else{ %><%= "未定" %><% } %></strong></li>
+                <li>要求：<strong><%= rows[i]['Vol_Rsct'] %></strong></li>
+                <li><%= rows[i]['Det'] %></li>
+            </ul> 
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+    <% } %>
+
+    <div class="form">
+         <form action="#" method="post" class="niceform">
+
+         
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="vol_msg">申请理由:</label></dt>
+                        <dd><textarea type="text" name="vol_msg" id="vol_msg" rows="5" cols="36" value="" placeholder="请填写申请理由" ></textarea></dd>
+                    </dl>
+
+                    <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="报名" onClick="subChk('申请参加该志愿者活动')" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                    </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

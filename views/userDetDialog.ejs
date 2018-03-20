@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/in/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/stylesheets/in/niceforms-default.css" />
+</head>
+
+<body>
+
+	<div class="centerbar_box">
+        <div class="centerbar_box_top"></div>
+        <div class="centerbar_box_content">
+            <h4><%= row['Name'] %></h4>
+
+                <ul>
+                    <li>角色：  <% if(row['Role'] == 0){ %>
+                                    <strong>管理员</strong>
+                                <% } else if(row['Role'] == 0.5){ %>
+                                    <strong>主管领导</strong>
+                                <% } else if(row['Role'] == 1){ %>
+                                    <strong>科研宣教科人员</strong>
+                                <% } else if(row['Role'] == 2){ %>
+                                    <strong>普通用户 | 志愿者</strong>
+                                <% } else { %>
+                                    <strong>普通用户</strong>
+                                <% } %>   </li>
+                    <li>性别：  <% if(row['Sex'] == 0){ %>
+                                    <strong>男</strong>
+                                <% }else if(row['Sex'] == 1){ %>
+                                    <strong>女</strong>
+                                <% } else { %>
+                                    <small><font color="red">异常</font></samll></strong>
+                                <% } %>   </li>
+                    
+                    <li>单位：<strong><%= row['Dep'] %></strong></li>
+                    <li>二级单位：<strong><%= row['Sec_Dep'] %></strong></li>
+                    <li>电子邮件：<strong><%= row['Email'] %></strong></li>
+                    <li>电话：<strong><%= row['Mobile'] %></strong></li>
+                    <li>身份证：<strong><%= row['ID_Card'] %></strong></li>
+                    <li>住址：<strong><%= row['Addr'] %></strong></li>
+                    <li>注册时间：<strong><%= row['Reg_Time'] %></strong></li>
+                    <li>最近登录：<strong><%= row['Nearest_Time'] %></strong></li>
+                </ul> 
+
+        </div>
+        <div class="centerbar_box_bottom"></div>
+    </div>
+
+</body>
+
+</html>

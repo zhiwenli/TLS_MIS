@@ -1,0 +1,46 @@
+<%- include ../header %>
+      
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return repChk();">
+
+                <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                </dl>
+         
+                <fieldset>
+                    <dl>
+                        <dt><label for="MIS_email_addr">邮箱地址:</label></dt>
+                        <input type="text" name="MIS_email_addr" id="MIS_email_addr" size="54" value="<% if(row) { %><%= row.MIS_Email_Addr %><% } %>" placeholder="请填写系统发件邮箱地址" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="MIS_email_pwd">邮箱密码:</label></dt>
+                        <dd><input type="password" name="MIS_email_pwd" id="MIS_email_pwd" size="54" value="<% if(row) { %><%= row.MIS_Email_Pwd %><% } %>" placeholder="请填写发件邮箱密码"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="MIS_email_SMTP">SMTP服务器地址:</label></dt>
+                        <dd><input type="text" name="MIS_email_SMTP" id="MIS_email_SMTP" size="54" value="<% if(row) { %><%= row.MIS_Email_SMTP %><% } %>" placeholder="请填写发件邮箱SMTP服务器地址"/></dd>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="保存" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                        <input type="submit" name="operate" id="submit" value="邮箱测试" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

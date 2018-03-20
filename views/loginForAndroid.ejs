@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>浙江天目山国家级自然保护区科研科普活动管理系统</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/in/style.css" />
+<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/ddaccordion.js"></script>
+<script type="text/javascript" src="/javascripts/confirm.js"></script>
+<script type="text/javascript" src="/javascripts/md5.js"></script>
+<script type="text/javascript">
+ddaccordion.init({
+	headerclass: "submenuheader", //Shared CSS class name of headers group
+	contentclass: "submenu", //Shared CSS class name of contents group
+	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+	defaultexpanded: [], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+	animatedefault: false, //Should contents open by default be animated into view?
+	persiststate: true, //persist state of opened contents within browser session?
+	toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+	togglehtml: ["suffix", "<img src='images/plus.gif' class='statusicon' />", "<img src='images/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+		//do nothing
+	},
+	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+		//do nothing
+	}
+})
+</script>
+
+<script type="text/javascript" src="/javascripts/jconfirmaction.jquery.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.ask').jConfirmAction();
+	});
+	
+</script>
+
+<script language="javascript" type="text/javascript" src="/javascripts/niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="/stylesheets/in/niceforms-default.css" />
+
+</head>
+<body>
+<div id="main_container">
+
+	<div class="header_login">
+    <div class="logo"><a href="#"><img src="/images/in/images/logo.png" alt="" title="" border="0" /></a></div>
+    
+    </div>
+
+     
+         <div class="login_form">
+         
+         <h3><strong>登录</strong></h3>
+         
+         <a href="/loginHelp" target="_blank" class="forgot_pass">使用指南</a>
+         <a href="/rePwd" class="forgot_pass">忘记密码</a> 
+         <a href="/register" class="forgot_pass">注册</a> 
+         
+         <!--表单没有class=niceform属性，解决niceform在安卓移动端的兼容性问题-->
+         <form action="" method="post" onsubmit="return loginChk();">
+         		
+         		<% if(logTips) { %> 
+		        <p align='center'><font color="red"><%= logTips %></font></p>
+		        <% } %>
+
+                <fieldset>
+                    <dl>
+                        <dt><label for="username">用户名：</label></dt>
+                        <dd><input id="username" name="username" required="required" type="text" size="45" placeholder="请输入电子邮箱" /></dd>
+                    </dl>
+
+					<dl>
+                        <dt><label for="password">密码：</label></dt>
+                        <dd><input id="password" name="password" required="required" type="password" size="45" placeholder="请输入您的密码"/></dd>
+                    </dl>
+
+                    <dl class="submit">
+                    	<input type="submit" name="submit" id="submit" value="登录" />
+                        <!--<p align='center'><font color="bule">（系统维护中，建议稍后访问）</font></p>-->
+                    </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>
+          
+    
+    <div class="footer_login">
+    
+    	<div class="left_footer">浙ICP备xxxxxxxx号 | 浙江天目山国家级自然保护区管理局 版权所有 © 2016</div>
+    	<div class="right_footer"><img src="/images/in/images/indeziner_logo.png" alt="" title="" border="0" /></div>
+    
+    </div>
+
+</div>		
+</body>
+</html>

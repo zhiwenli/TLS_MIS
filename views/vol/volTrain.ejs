@@ -1,0 +1,36 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+
+    <form action="?user_id=<%= row['User_Id'] %>" method="post" class="niceform">
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+            <h3>提示</h3>
+            <img src="/images/in/images/info.png" alt="" title="" class="centerbar_icon_right" />
+            <ul>
+                <li>
+                    用户ID：<strong><%= row['User_Id'] %></strong>
+                </li>
+                <li>
+                    姓名：<strong><%= row['Name'] %></strong>
+                </li>
+                <li>
+                若当前用户已顺利完成国家自然保护区教育培训，请点击通过培训，该用户将正式拥有志愿者身份。
+                </li>
+            </ul>
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+
+        <div align="center">
+            <input type="submit" name="operate" id="submit" value="确认通过" onClick="passcfm()" />
+            <input type="submit" name="operate" id="submit" value="返回" />
+        </div>
+
+    </form>
+
+<% include ../footer %>

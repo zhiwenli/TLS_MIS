@@ -1,0 +1,52 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>   
+
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+
+
+                    <% if(menu.userrole == 2.1){ %>
+                        <div class="centerbar_box">
+                            <div class="centerbar_box_top"></div>
+                            <div class="centerbar_box_content">
+                            <h3>培训信息</h3>
+                            <img src="/images/in/images/info.png" alt="" title="" class="centerbar_icon_right" />
+                            <p>
+                                <%= Train_Msg %>
+                            </p>
+                            </div>
+                            <div class="centerbar_box_bottom"></div>
+                        </div> 
+                    <% } %>
+
+                    <% if(menu.userrole == 2.3){ %>
+                        <div class="centerbar_box">
+                            <div class="centerbar_box_top"></div>
+                            <div class="centerbar_box_content">
+                            <h4>拒绝原因</h4>
+                            <img src="/images/in/images/notice.png" alt="" title="" class="centerbar_icon_right" />
+                            <p>
+                                <%= Vol_Msg %>
+                            </p>
+                            </div>
+                            <div class="centerbar_box_bottom"></div>
+                        </div>
+
+                        <div align="center">
+                        <input class="submit" type="submit" name="operate" id="submit" value="重新申请" onClick="subChk('重新申请')" />
+                        </div>
+                    <% } %>
+                    
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

@@ -1,0 +1,118 @@
+<%- include ../header %>
+    
+    <div class="right_content">
+
+
+    <h2><%= menu.title %></h2>
+
+     <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" >
+
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="memname">姓名:</label></dt>
+                        <dd><input type="text" name="memname" id="memname" size="54" maxlength="20" value="<% if(row){ %><%= row['Mem_Name'] %><% } %>" placeholder="成员姓名" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memtype">人员类别:</label></dt>
+                        <dd>
+                            <input type="radio" name="memtype" id="memtype" value="教师" <% if(row['Mem_Type'] == "教师"){ %><%- checked="checked" %><% }else{ %><%- checked="checked" %><% } %> /><label class="check_label" >教师</label>
+
+                            <input type="radio" name="memtype" id="memtype" value="研究员" <% if(row['Mem_Type'] == "研究员"){ %><%- checked="checked" %><% } %> /><label class="check_label" >研究员</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="副研究员" <% if(row['Mem_Type'] == "副研究员"){ %><%- checked="checked" %><% } %> /><label class="check_label" >副研究员</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="助理研究员" <% if(row['Mem_Type'] == "助理研究员"){ %><%- checked="checked" %><% } %> /><label class="check_label" >助理研究员</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="教授" <% if(row['Mem_Type'] == "教授"){ %><%- checked="checked" %><% } %> /><label class="check_label" >教授</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="副教授" <% if(row['Mem_Type'] == "副教授"){ %><%- checked="checked" %><% } %> /><label class="check_label" >副教授</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="讲师" <% if(row['Mem_Type'] == "讲师"){ %><%- checked="checked" %><% } %> /><label class="check_label" >讲师</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="助教" <% if(row['Mem_Type'] == "助教"){ %><%- checked="checked" %><% } %> /><label class="check_label" >助教</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="研究生" <% if(row['Mem_Type'] == "研究生"){ %><%- checked="checked" %><% } %> /><label class="check_label">研究生</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="本科生" <% if(row['Mem_Type'] == "本科生"){ %><%- checked="checked" %><% } %> /><label class="check_label">本科生</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="中学生" <% if(row['Mem_Type'] == "中学生"){ %><%- checked="checked" %><% } %> /><label class="check_label">中学生</label>
+                            
+                            <input type="radio" name="memtype" id="memtype" value="小学生" <% if(row['Mem_Type'] == "小学生"){ %><%- checked="checked" %><% } %> /><label class="check_label">小学生</label>
+
+                            <input type="radio" name="memtype" id="memtype" value="其它" <% if(row['Mem_Type'] == "其它"){ %><%- checked="checked" %><% } %> /><label class="check_label">其它</label>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memsex">性别:</label></dt>
+                        <dd>
+                            <input type="radio" name="memsex" id="memsex" value="0" <% if(row['Mem_Sex'] == "0"){ %><%- checked="checked" %><% }else{ %><%- checked="checked" %><% } %> /><label class="check_label" >男</label>
+                            <input type="radio" name="memsex" id="memsex" value="1" <% if(row['Mem_Sex'] == "1"){ %><%- checked="checked" %><% } %> /><label class="check_label">女</label>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memmobile">手机号:</label></dt>
+                        <dd><input type="text" name="memmobile" id="memmobile" size="54" minlength="11 "maxlength="11" value="<% if(row){ %><%= row['Mem_Mobile'] %><% } %>"  placeholder="中国大陆地区11位手机号" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="mememail">电子邮箱:</label></dt>
+                        <dd><input type="text" name="mememail" id="mememail" size="54" maxlength="25" value="<% if(row){ %><%= row['Mem_Email'] %><% } %>"  placeholder="该邮件地址作为该成员登录的唯一凭证" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memidcard">身份证号:</label></dt>
+                        <dd><input type="text" name="memidcard" id="memidcard" size="54" maxlength="18" value="<% if(row){ %><%= row['Mem_ID_Card'] %><% } %>"  placeholder="中国大陆地区15或18位身份证编号" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memdep">单位:</label></dt>
+                        <dd><input type="text" name="memdep" id="memdep" size="54" maxlength="30" value="<% if(row){ %><%= row['Mem_Dep'] %><% } %>"  placeholder="如“华东师范大学”"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memsecdep">二级单位:</label></dt>
+                        <dd><input type="text" name="memsecdep" id="memsecdep" size="54" maxlength="40" value="<% if(row){ %><%= row['Mem_Sec_Dep'] %><% } %>" placeholder="如“地理科学学院”" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memmajor">专业:</label></dt>
+                        <dd><input type="text" name="memmajor" id="memmajor" size="54" value="<% if(row){ %><%= row['Mem_Major'] %><% } %>" placeholder="学习或从事的专业" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memcretype">证件类型:</label></dt>
+                        <dd>
+                            <input type="radio" name="memcretype" id="memcretype" value="工作证" <% if(row['Mem_Cre_Type'] == "工作证"){ %><%- checked="checked" %><% }else{ %><%- checked="checked" %><% } %> /><label class="check_label" >工作证</label>
+                            <input type="radio" name="memcretype" id="memcretype" value="学生证" <% if(row['Mem_Cre_Type'] == "学生证"){ %><%- checked="checked" %><% } %> /><label class="check_label">学生证</label>
+                            <input type="radio" name="memcretype" id="memcretype" value="其它" <% if(row['Mem_Cre_Type'] == "其它"){ %><%- checked="checked" %><% } %> /><label class="check_label">其它</label>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="memcreid">证件号码:</label></dt>
+                        <dd><input type="text" name="memcreid" id="memcreid" size="54" value="<% if(row){ %><%= row['Mem_Cre_Id'] %><% } %>" /></dd>
+                    </dl>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="保存" onclick="addMemChk()"/>
+                        <input type="submit" name="operate" id="submit" value="删除" onclick="delcfm()"/>
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

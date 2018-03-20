@@ -1,0 +1,75 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return volActPubChk();">
+         
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="title">主题：</label></dt>
+                        <dd><input type="text" name="title" id="title" size="54" maxlength="40" value="" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="place">地点:</label></dt>
+                        <dd><input type="text" name="place" id="place" size="54" value=""/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="dema_vol">预计需求人数：</label></dt>
+                        <dd><input type="number" name="dema_vol" id="dema_vol" size="54"  value=""/><p><small>*若人数未定请填写0</small></p></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="start_datetime">开始时间:</label></dt>
+                        <dd>
+                            <input type="number" min="2016" max="2050" step="1" name="start_year" id="start_year" style="width:50px;" required="required" value="<%= start_datetime[0] %>" />年 
+                            <input type="number" min="1" max="12" step="1" name="start_month" id="start_month" style="width:35px;" required="required" value="<%= start_datetime[1] %>" />月 
+                            <input type="number" min="1" max="31" step="1" name="start_day" id="start_day" style="width:35px;" required="required" value="<%= start_datetime[2] %>" />日
+                            &nbsp&nbsp
+                            <input type="number" min="0" max="23" step="1" name="start_hour" id="start_hour" style="width:35px;" required="required" value="<%= start_datetime[3] %>" />时 
+                            <input type="number" min="0" max="59" step="1" name="start_minute" id="start_minute" style="width:35px;" required="required" value="<%= start_datetime[4] %>" />分
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="end_datetime">结束时间:</label></dt>
+                        <dd>
+                            <input type="number" min="2016" max="2050" step="1" name="end_year" id="end_year" style="width:50px;" required="required" value="<%= end_datetime[0] %>" />年 
+                            <input type="number" min="1" max="12" step="1" name="end_month" id="end_month" style="width:35px;" required="required" value="<%= end_datetime[1] %>" />月 
+                            <input type="number" min="1" max="31" step="1" name="end_day" id="end_day" style="width:35px;" required="required" value="<%= end_datetime[2] %>" />日
+                            &nbsp&nbsp
+                            <input type="number" min="0" max="23" step="1" name="end_hour" id="end_hour" style="width:35px;" required="required" value="<%= end_datetime[3] %>" />时 
+                            <input type="number" min="0" max="59" step="1" name="end_minute" id="end_minute" style="width:35px;" required="required" value="<%= end_datetime[4] %>" />分
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="vol_rsct">志愿者要求：</label></dt>
+                        <dd><textarea type="text" name="vol_rsct" id="vol_rsct" rows="5" cols="36" value=""></textarea></dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt><label for="det">活动描述：</label></dt>
+                        <dd><textarea type="text" name="det" id="det" rows="5" cols="36" value=""></textarea></dd>
+                    </dl>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="发布" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

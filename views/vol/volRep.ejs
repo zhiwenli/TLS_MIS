@@ -1,0 +1,34 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+    
+
+    <h2><%= menu.title %></h2>   
+
+    <%- include ../tips %>
+        
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+
+         
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="vol_msg">申请理由:</label></dt>
+                        <dd><textarea type="text" name="vol_msg" id="vol_msg" rows="5" cols="36" value="" placeholder="请填写申请理由" ></textarea></dd>
+                    </dl>
+
+                    <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="申请" onClick="subChk('申请')" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                    </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

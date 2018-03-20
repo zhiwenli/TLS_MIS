@@ -1,0 +1,55 @@
+<%- include ../header %>
+    
+    <div class="right_content">
+
+
+    <h2><%= menu.title %></h2>
+
+     <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return idcardChk();">
+
+
+                <input type="hidden" name="srid" id="srid" value="<%= srid %>" />
+         
+                <fieldset>
+                    
+                    <dl>
+                        <dt><label for="numOfPeople">总人数:</label></dt>
+                        <dd><input name="numOfPeople" id="numOfPeople" value="<%= numOfPeople %>" readonly="true"/><p>*邀请者本人无需填写</p></dd>
+                    </dl>
+
+                    <% for(var i = 1; i < numOfPeople; i++) { %>
+
+                    <dl>
+                        <dt><label for="<%= i %>name">成员<%= i+1 %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp姓名:</label></dt>
+                        <dd><input type="text" name="<%= i %>name" id="<%= i %>name" size="54" maxlength="10" value="" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="email">电子邮件:</label></dt>
+                        <dd><input type="email" name="<%= i %>email" id="<%= i %>email" size="54" value="" /></dd>
+                    </dl>
+                    <% } %>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="上一步" />
+                        <% if(numOfPeople == 1) {%>
+                            <input type="submit" name="operate" id="submit" value="下一步" />
+                        <% } else { %>
+                            <input type="submit" name="operate" id="submit" value="邀请" onclick="subChk('邀请')"/>
+                        <% } %>
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

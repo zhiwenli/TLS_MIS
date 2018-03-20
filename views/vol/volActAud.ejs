@@ -1,0 +1,99 @@
+                    
+                    
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+        
+        <%- include ../tips %>
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+                <div class="centerbar_box_content">
+                <h3>用户信息</h3>
+                <img src="/images/in/images/info.png" alt="" title="" class="centerbar_icon_right" />
+                <ul>
+                    <li>
+                        用户编号：<%= row['User_Id'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        用户名：<%= row['Name'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        性别：<% if(row['Sex'] == 0){ %><%= "男" %><% }else if(row['Sex'] == 1){ %><%= "女" %><% } %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        电话：<%= row['Mobile'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        身份证号：<%= row['ID_Card'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        电子邮箱：<%= row['Email'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        地址：<%= row['Addr'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        最近登录时间：<%= row['Nearest_Time'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        注册时间：<%= row['Reg_Time'] %>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                    <% if(row['Vol_Sta'] == 4){ %>
+                        <strong>拒绝理由：<%= row['Vol_Msg'] %></strong>
+                    <% }else{ %>
+                        <strong>申请理由：<%= row['Vol_Msg'] %></strong>
+                    <% } %>
+                    </li>
+                </ul>
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div> 
+        <div class="form">
+
+
+         <form action="?vol_act_id=<%= row["Vol_Act_Id"] %>&user_id=<%= row["User_Id"] %>" method="post" class="niceform">
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="vol_msg">审核意见:</label></dt>
+                        <dd><textarea type="text" name="vol_msg" id="vol_msg" rows="5" cols="36" value="" placeholder="若不通过，该意见将显示给申请人" ><% if(row['Vol_Sta'] == 4){ %><%= row['Vol_Msg'] %><% } %></textarea></dd>
+                    </dl>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="通过" onClick="passcfm()" />
+                        <input type="submit" name="operate" id="submit" value="不通过" onClick="stopcfm()" />
+                        <input type="submit" name="operate" id="submit" value="返回" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

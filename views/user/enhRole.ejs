@@ -1,0 +1,47 @@
+                    
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+        <h2><%= menu.title %></h2>
+
+        <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+         
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="username">当前权限:</label></dt>
+                        <dd>
+                            <input type="text" name="username" id="username" size="54" value="<% if(menu.userrole == 0){ %><%= '管理员' %><% }else if(menu.userrole == 0.5){ %><%= '主管领导' %><% }else if(menu.userrole == 1){ %><%= '科研宣教科人员' %><% }else if(menu.userrole >=2 && menu.userrole<=2.4){ %><%= '普通用户' %><% }else{ %><%= '异常' %><% } %>" readonly="true" />
+                        </dd>
+                    </dl>                    
+                    
+                    <dl>
+                        <dt><label for="enhrole">申请成为:</label></dt>
+                        <dd>
+                            <input type="radio" name="enhrole" id="enhrole" value="2.4" /><label class="check_label">普通用户</label>
+                            <input type="radio" name="enhrole" id="enhrole" value="1" /><label class="check_label">科研宣教科人员</label>
+                            <input type="radio" name="enhrole" id="enhrole" value="0.5" /><label class="check_label">主管领导</label>
+                            <input type="radio" name="enhrole" id="enhrole" value="0" /><label class="check_label">系统管理员</label>
+                        </dd>
+                    </dl>
+
+                    <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="确认申请" onclick="subChk('申请改变用户角色')"/>
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                    </dl>
+
+
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

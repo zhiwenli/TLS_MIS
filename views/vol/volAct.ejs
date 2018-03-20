@@ -1,0 +1,29 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+
+    <%- include ../tips %>
+
+    <% for(var i = 0; i < rows.length; i++){ %>
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+            <h4><a href="/vol/volActRep?vol_act_id=<%= rows[i]['Vol_Act_Id'] %>" title="查看该志愿者活动"><%= rows[i]['Title'] %><% if(menu.userrole == 2){ %><small>[点击报名]</small><% } %></a></h4>
+            
+            <ul>
+                <li>时间：<strong><%= rows[i]['Start_Time'] %></strong></li>
+                <li>地点：<strong><%= rows[i]['Place'] %></strong></li>
+                <li>要求：<strong><%= rows[i]['Vol_Rsct'] %></strong></li>
+                <li><%= rows[i]['Det'] %></li>
+            </ul> 
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+    <% } %>
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

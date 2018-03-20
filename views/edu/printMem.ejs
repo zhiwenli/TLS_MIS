@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/javascripts/confirm.js"></script>
+<head>
+<title>浙江 · 天目山</title>
+
+
+<style type="text/css">
+
+	html, body, div, span, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	abbr, address, cite, code,
+	del, dfn, em, img, ins, kbd, q, samp,
+	small, strong, sub, sup, var,
+	b, i,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td {
+		margin:0;
+		padding:0;
+		border:0;
+		outline:0;
+		font-size:100%;
+		vertical-align:baseline;
+		background:transparent;
+	}
+	
+	body {
+		margin:0;
+		padding:0;
+		font:12px/15px;
+		color: #555;
+	}
+	
+	a {color:#666;}
+	
+	#content {width:90%; margin:3% auto 0;}
+	
+	table {
+		overflow:hidden;
+		border:1px solid #d3d3d3;
+		background:#fff;
+		margin:2% auto 0;
+		-moz-border-radius:5px; /* FF1+ */
+		-webkit-border-radius:5px; /* Saf3-4 */
+		border-radius:5px;
+		-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+	}
+	
+	th, td {padding:6px 14px 6px; text-align:center; }
+	
+	td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
+	
+	td.first, th.first {text-align:left}
+	
+	td.last {border-right:none;}
+	
+	tr:first-child th.first {
+		-moz-border-radius-topleft:5px;
+		-webkit-border-top-left-radius:5px; /* Saf3-4 */
+	}
+	
+	tr:first-child th.last {
+		-moz-border-radius-topright:5px;
+		-webkit-border-top-right-radius:5px; /* Saf3-4 */
+	}
+	
+	tr:last-child td.first {
+		-moz-border-radius-bottomleft:5px;
+		-webkit-border-bottom-left-radius:5px; /* Saf3-4 */
+	}
+	
+	tr:last-child td.last {
+		-moz-border-radius-bottomright:5px;
+		-webkit-border-bottom-right-radius:5px; /* Saf3-4 */
+	}
+
+</style>
+
+<style media=print type="text/css"> 
+	.noprint{visibility:hidden}
+</style>
+
+</head>
+<body onload="printpage()">
+	<div align="center">
+		<p>&nbsp</p>
+		<p>&nbsp</p>
+		<input class="noprint" type="button" value="保存/打印" onclick="printpage()" />
+	</div>
+
+
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+	<h1 align='center'>浙江天目山国家级自然保护区科普教育申请表</h1>
+	<p>&nbsp</p>
+
+	<p>编号：<%= row['EDU_Id'] %></p>
+	<p>主题：<%= row['EDU_Title'] %></p>
+	<p>地点：<%= row['Place'] %></p>
+	<p>路线：<%= row['Route'] %></p>
+	<p>住宿：<%= row['Acmdt'] %></p>
+	<p>人数：<%= row['Peop_Count'] %></p>
+	<p>开始时间：<%= row['Start_Time'] %></p>
+	<p>结束时间：<%= row['End_Time'] %></p>
+	<p>特殊需求：<%= row['Spc_Require'] %></p>
+	<p>&nbsp</p>
+
+	<h2 align='center'>成员名单</h2>
+
+	<div id="content">
+
+	    <table cellspacing="0">
+	    <tr>
+	    	<th>序号</th>
+	    	<th>姓名</th>
+	    	<th>性别</th>
+	    	<th>单位</th>
+	    	<th>二级单位</th>
+	    	<th>类别</th>
+	    </tr>
+
+	    <% for(var i = 0; i < rows.length; i++){ %>
+	    <tr>
+	    	<td><%= i+1 %></td>
+	    	<td><%= rows[i]['Mem_Name'] %></td>
+	    	<td><%if(rows[i]['Mem_Sex']==0){%><%= '男' %><% }else if(rows[i]['Mem_Sex']==1){ %><%= '女' %><% }else { %><%= '未知' %><% } %></td>
+	    	<td><%= rows[i]['Mem_Dep'] %></td>
+	    	<td><%= rows[i]['Mem_Sec_Dep'] %></td>
+	    	<td><%= rows[i]['Mem_Type'] %></td>
+	    </tr>
+	    <% } %>
+
+	    </table>
+
+	</div>
+
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+	<p>单位签章：</p>
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+	<p>&nbsp</p>
+    <p align='right'>年&nbsp&nbsp月&nbsp&nbsp日</p>
+
+</body>
+</html>

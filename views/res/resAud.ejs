@@ -1,0 +1,59 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+
+         
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+                <h4><%= row['SR_Title'] %></h4>
+
+                <ul>
+                    <li>编号：<strong><%= row['SR_Id'] %></strong></li>
+                    <li>申请人：<strong><a href='/userDet?userid=<%= row['User_Id'] %>'><%= row['Name'] %></a></strong></li>
+                    <li>地点：<strong><%= row['Place'] %></strong></li>
+                    <li>路线：<strong><%= row['Route'] %></strong></li>
+                    <li>住宿：<strong><%= row['Acmdt'] %></strong></li>
+                    <li>人数：<strong><%= row['Peop_Count'] %></strong>&nbsp<a href="/res/resMemList?srid=<%= row['SR_Id'] %>" target="_blank">查看</a></li>
+                    <li>开始时间：<strong><%= row['Start_Time'] %></strong></li>
+                    <li>结束时间：<strong><%= row['End_Time'] %></strong></li>
+                    <li>成果提交时间：<strong><%= row['Submit_Time'] %></strong></li>
+                    <li>活动内容：<strong><%= row['Act_Content'] %></strong></li>
+                    <li>特殊需求：<strong><% if(row['Spc_Require'] != ''){ %><%= row['Spc_Require'] %><% } else { %><%= '无' %><% } %></strong></li>
+                </ul> 
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+
+
+
+
+        <div class="form">
+        <form action="#" method="post" class="niceform">
+            <% if(row['Res_Sta'] == 2){ %>
+            <fieldset>
+
+                <dl>
+                    <dt><label for="aud_sug">审核意见:</label></dt>
+                    <dd><textarea type="text" name="aud_sug" id="aud_sug" rows="5" cols="36" placeholder="若拒绝请填写审核意见" ><% if(row) { %><%= row['Aud_Sug'] %><% } %></textarea></dd>
+                </dl>
+
+                 <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="通过审核，提交领导确认" onClick="passcfm()" />
+                    <input type="submit" name="operate" id="submit" value="不通过" onClick="stopcfm()" />
+                    <input type="submit" name="operate" id="submit" value="返回" />
+                 </dl>
+                
+            </fieldset>
+            <% } %>
+        </form>
+        </div>
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

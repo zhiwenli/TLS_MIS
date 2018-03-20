@@ -1,0 +1,91 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+        <tr>
+            <th scope="col" class="rounded-company">ID</th>
+            <th scope="col" class="rounded">活动名称</th>
+            <th scope="col" class="rounded">地点</th>
+            <th scope="col" class="rounded">路线</th>
+            <th scope="col" class="rounded">住宿方式</th>
+            <th scope="col" class="rounded">开始时间</th>
+            <th scope="col" class="rounded">结束时间</th>
+            <th scope="col" class="rounded">活动状态</th>
+            <th scope="col" class="rounded-q4">出入证打印</th>
+        </tr>
+        </thead>
+    <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+         </tr>
+     </tfoot>
+
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+        <% if(!rows[i]["SR_Id"]){continue;} %>
+         <tr>
+            <td><%= rows[i]["SR_Id"] %></td>
+            <td><%= rows[i]["SR_Title"] %></td>
+            <td><%= rows[i]["Place"] %></td>
+            <td><%= rows[i]["Route"] %></td>
+            <td><%= rows[i]["Acmdt"] %></td>
+            <td><%= rows[i]["Start_Time"] %></td>
+            <td><%= rows[i]["End_Time"] %></td>
+            <td>
+                <% if(rows[i]["Res_Sta"] >= 2 && rows[i]["Res_Sta"] < 5) { %>
+                <%= "正在申请中" %>
+                <% } else if(rows[i]["Res_Sta"] == 0.5) { %>
+                <%= "正在申请中" %>
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] != 1) { %>
+                <%= "活动申请已通过,合同待审" %>
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 1) { %>
+                <%= "请及时参加活动" %>
+                <% } else if(rows[i]["Res_Sta"] == 1) { %>
+                <%= "活动未通过审核" %>
+                <% } else if(rows[i]["Res_Sta"] == 4) { %>
+                <%= "待添加活动成员" %>
+                <% } else if(rows[i]["Res_Sta"] == 5) { %>
+                <%= "活动已结束" %>
+                <% } else if(rows[i]["Res_Sta"] == 6) { %>
+                <%= "活动已撤销" %>
+                <% } else { %>
+                <%= "异常"+rows[i]["Res_Sta"] %>
+                <% } %>
+            </td>
+            <td>
+                <a href="/user/passPrint?srid=<%= rows[i]["SR_Id"] %>&act_type=0" target="_blank">
+                    <img src="/images/in/images/printer.jpg" alt="" title="" border="0" />
+                </a>
+            </td>
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+    <a href=""><%= page %>/<%= totalPage %></a>
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

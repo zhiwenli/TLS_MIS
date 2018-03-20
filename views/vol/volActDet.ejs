@@ -1,0 +1,63 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" >
+         
+                <fieldset>
+
+                    <dl>
+                        <dt><label for="title">主题：</label></dt>
+                        <dd><input type="text" name="title" id="title" size="54" value="<%= row['Title'] %>" readonly='true'/></dd>
+                    </dl>
+
+                    
+                    <dl>
+                        <dt><label for="start_time">开始时间：</label></dt>
+                        <dd><input type="text" name="start_time" id="start_time" size="54" readonly='true' value="<%= row['Start_Time'] %>"/>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="end_time">结束时间：</label></dt>
+                        <dd><input type="text" name="end_time" id="end_time" size="54" readonly='true' value="<%= row['End_Time'] %>"/>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="place">地点:</label></dt>
+                        <dd><input type="text" name="place" id="place" size="54" readonly='true' value="<%= row['Place'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="dema_vol">需求人数：</label></dt>
+                        <dd><input type="text" name="dema_vol" id="dema_vol" size="54" readonly='true' value="<% if(row['Dema_Vol'] != 0){ %><%= row['Dema_Vol'] %><% }else{ %><%= '未定' %><% } %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="vol_rsct">志愿者要求：</label></dt>
+                        <dd><textarea type="text" name="vol_rsct" id="vol_rsct" rows="5" cols="36" readonly='true'><%= row['Vol_Rsct'] %></textarea></dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt><label for="det">活动描述：</label></dt>
+                        <dd><textarea type="text" name="det" id="det" rows="5" cols="36" readonly='true'><%= row['Det'] %></textarea></dd>
+                    </dl>
+
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="删除活动" onclick="subChk('删除该活动？')"/>
+                        <input type="submit" name="operate" id="submit" value="审核志愿者" />
+                        <input type="submit" name="operate" id="submit" value="返回" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

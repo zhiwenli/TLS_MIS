@@ -1,0 +1,59 @@
+<% include header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+
+
+    <% if(menu.eduWar){ %>
+        <div class="valid_box">
+            <%= menu.eduWar %>
+        </div>
+    <% } %>
+
+    <% if(menu.eduWar){ %>
+        <div class="warning_box">
+                <%= menu.eduWar %>
+        </div>
+    <% } %>
+
+    <% if(menu.volWar){ %>
+        <div class="error_box">
+               <%= menu.volWar %>
+        </div>
+    <% } %>
+
+    <div class="centerbar_box">
+        <div class="centerbar_box_top"></div>
+        <div class="centerbar_box_content">
+        <h3>公告</h3>
+        <img src="/images/in/images/info.png" alt="" title="" class="centerbar_icon_right" />
+        <p>
+            <%= indexNotice %>
+        </p>
+        </div>
+        <div class="centerbar_box_bottom"></div>
+    </div>
+
+    <% for(var i = 0; i < rows.length; i++){ %>
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+            <h4>志愿者招募</h4>
+            
+            <ul>
+                <li><a href="/vol/volActRep?vol_act_id=<%= rows[i]['Vol_Act_Id'] %>"><strong><%= rows[i]['Title'] %></strong><% if(menu.userrole == 2){ %><small> [点击报名]</small><% } %></a></li>
+                <li>时间：<strong><%= rows[i]['Start_Time'] %></strong></li>
+                <li>地点：<strong><%= rows[i]['Place'] %></strong></li>
+                <li>要求：<strong><%= rows[i]['Vol_Rsct'] %></strong></li>
+                <li><%= rows[i]['Det'] %></li>
+            </ul> 
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+    <% } %>
+
+</div>
+     <!-- end of right content-->
+        
+<% include footer %>

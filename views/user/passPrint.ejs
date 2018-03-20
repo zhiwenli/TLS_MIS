@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="nojs html" lang="zh-CN">
+ <head>
+
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+  <title><%= menu.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/confirm.js"></script>
+
+  <script type="text/javascript" src="/javascripts/jquery-1.5.2.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.qrcode.js"></script>
+  <script type="text/javascript" src="/javascripts/qrcode.js"></script>
+
+  <style type="text/css">
+    .pass {
+      height: 700px; 
+      width: 480px;
+    }
+    #background { position: absolute; left: -10px; top: 50px;}
+    p {color:rgb(0,0,0);}
+    #title { 
+      position: absolute; 
+      left: 65px; 
+      top: 80px;
+      font-size: 25px;
+    }
+    #title2 { 
+      position: absolute; 
+      left: 175px; 
+      top: 120px;
+      font-size: 25px;
+      font-weight: bold;
+      
+    }
+    #photo { 
+      position: absolute; 
+      left: 140px; 
+      top: 200px;
+      width: 160px;
+      height: 212px;
+    }
+    #qrcodeCanvas { 
+      position: absolute; 
+      left: 60px; 
+      top:  460px;
+    }
+    #name {
+      position: absolute; 
+      left: 230px;
+      top:  445px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    #sex { 
+      position: absolute; 
+      left: 230px; 
+      top:  505px;
+      font-size: 25px;
+    }
+    #dep {
+      position: absolute; 
+      left: 230px; 
+      top: 560px;
+      font-size: 25px;
+    }
+    #content {
+      position: absolute;
+      left: 42px;
+      top:  630px;
+      width: 380px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+
+   </head>
+ <body>
+
+  <p>&nbsp</p>
+
+  <!-- <div id="qrcodeCanvas"></div> -->
+
+      <div class="noprint" align="center">
+        <form action="#" method="post" onsubmit="return fileChk();" enctype="multipart/form-data">
+
+          <fieldset>
+              
+            <label for="uploadfile">上传照片：</label>
+            <input type="file" name="uploadfile" id="uploadfile" accept=".jpg,.png,.PNG,.JPG,.jpeg,.JPEG"/>
+            <p><small>(长宽比例以4:3为宜)</small></p>
+            
+            <input type="submit" name="operate" id="submit" value="上 传" />
+          
+               
+          </fieldset>
+                
+        </form>
+
+        <div align="center">
+          <p>&nbsp</p>
+          <input class="noprint" type="button" value=" 保存 / 打印 " onclick="printpage()" />
+        </div>
+
+      </div>
+
+      <div class="pass" align="center">
+        <img id="background" src="/images/pass_background.jpg" />
+        <p id="title">浙江天目山国家级自然保护区</p>
+        <p id="title2">出 入 证</p>
+        <img id="photo" src="/files/<%= Photo %>" />
+        <!-- <img id="qrcode" src="images/qrcode.jpg" /> -->
+        <div id="qrcodeCanvas" align="center"></div>
+
+        <p id="name"><%= Name %></p>
+        <p id="sex"><% if(Sex == 0){ %><%= "男" %><% }else if(Sex == 1){ %><%= "女" %><% } %></p>
+        <p id="dep"><%= Dep %></p>
+        <div id="content">
+        <p><%= Title %></p>
+        <p><%= Start_Time %> 至 <%= End_Time %></p>
+      </div>
+        
+        
+      </div>
+
+      <style media=print type="text/css"> 
+        .noprint{visibility:hidden}
+      </style>
+
+      <script>
+        jQuery('#qrcodeCanvas').qrcode({
+            width : 150,
+            height : 150,
+            text : toUtf8("<%= Qr_Code %>")
+        });
+
+        //二维码中文支持
+        function toUtf8(str) {
+            var out, i, len, c;
+            out = "";
+            len = str.length;
+            for(i = 0; i < len; i++) {
+                c = str.charCodeAt(i);
+                if ((c >= 0x0001) && (c <= 0x007F)) {
+                    out += str.charAt(i);
+                } else if (c > 0x07FF) {
+                    out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                    out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+                    out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+                } else {
+                    out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+                    out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+                }
+            }
+            return out;
+        }
+    </script>
+ 
+   </body>
+</html>

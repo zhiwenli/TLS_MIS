@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="lizhiwen, hi@zhiwenli.com, www.zhiwenli.com">
+<title><%= menu.title %>|浙江天目山国家级自然保护区科研科普活动管理系统</title>
+
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/in/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/stylesheets/in/niceforms-default.css" />
+
+<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/ddaccordion.js"></script>
+<script type="text/javascript" src="/javascripts/niceforms.js"></script>
+<script type="text/javascript" src="/javascripts/zDialog.js"></script>
+<script type="text/javascript" src="/javascripts/zDrag.js"></script>
+<script type="text/javascript" src="/javascripts/confirm.js"></script>
+<script type="text/javascript">
+ddaccordion.init({
+	headerclass: "submenuheader", //Shared CSS class name of headers group
+	contentclass: "submenu", //Shared CSS class name of contents group
+	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+	defaultexpanded: [], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+	animatedefault: false, //Should contents open by default be animated into view?
+	persiststate: true, //persist state of opened contents within browser session?
+	toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+	togglehtml: ["suffix", "<img src='/images/in/images/plus.gif' class='statusicon' />", "<img src='/images/in/images/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+		//do nothing
+	},
+	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+		//do nothing
+	}
+})
+</script>
+
+<script type="text/javascript" src="/javascripts/jconfirmaction.jquery.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.ask').jConfirmAction();
+	});
+	
+</script>
+
+<script type="text/javascript">
+        autoIframeHeight('mainFrame', 2000);
+</script>
+
+</head>
+
+<body>
+<div id="main_container">
+
+	<div class="header">
+    <div class="logo"><a href="#"><img src="/images/in/images/logo.png" alt="" title="" border="0" /></a></div>
+    
+    <div class="right_header">欢迎 <a href="/user/userDet"><%= menu.username %></a> (<% if(menu.userrole == 0){ %><%= "管理员" %><% }else if(menu.userrole == 0.5){ %><%= "主管领导" %><% }else if(menu.userrole == 1){ %><%= "科研宣教科人员" %><% }else if(Math.floor(menu.userrole) == 2){ %><%= "普通用户" %><% }else{
+        %><= "角色异常" %><% } %>)  <% 
+        if(menu.userrole == 0){ %>| 消息(<%= menu.count.res_count1+menu.count.res_count1_1+menu.count.res_count2+menu.count.res_count3+menu.count.edu_count1+menu.count.edu_count1_1+menu.count.edu_count2+menu.count.edu_count3 %>) <% }
+        else if(menu.userrole == 0.5){ %>| 消息(<%= menu.count.res_count1_1+menu.count.edu_count1_1 %>) <% }
+        else if(menu.userrole == 1){ %>| 消息(<%= menu.count.res_count1+menu.count.res_count2+menu.count.res_count3+menu.count.edu_count1+menu.count.edu_count2+menu.count.edu_count3 %>) <% }
+        %>| <a href="/logout" class="logout">登出</a></div>
+    </div>
+    
+    <div class="main_content">
+    
+                    <div class="menu">
+                        <ul>
+                            <li><a class="current" href="/index">首页</a></li>
+                            <li>
+                                <a href="/index">系统帮助</a>
+                                <ul>
+                                    <li>
+                                        <a href="/loginHelp" title="">开始使用</a>
+                                        <ul>
+                                            <li><a href="/loginHelp#env" title="">使用环境</a></li>
+                                            <li><a href="/loginHelp#loginReg" title="">登录注册</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/normalUserHelp" title="">普通用户</a>
+                                        <ul>
+                                            <li><a href="/normalUserHelp#res" title="">科研学术活动申报指南</a></li>
+                                            <li><a href="/normalUserHelp#edu" title="">科普教育实习申报指南</a></li>
+                                            <li><a href="/normalUserHelp#act" title="">参加活动指南</a></li>
+                                            <li><a href="/normalUserHelp#voler" title="">志愿者活动申报指南</a></li>
+                                            <!-- <li><a href="/normalUserHelp#center" title="">个人中心指南</a></li> -->
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/auditorHelp" title="">科研宣教科人员</a>
+                                        <ul>
+                                            <li><a href="/auditorHelp#res" title="">科研学术活动管理指南</a></li>
+                                            <li><a href="/auditorHelp#edu" title="">科普教育实习管理指南</a></li>
+                                            <li><a href="/auditorHelp#voler" title="">志愿者管理指南</a></li>
+                                            <li><a href="/auditorHelp#vol" title="">志愿者活动管理指南</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/leaderHelp" title="">主管领导</a>
+                                    </li>
+                                    <li><a href="/adminHelp" title="">系统管理员</a>
+                                        <ul>
+                                            <li><a href="/adminHelp#user" title="">用户管理指南</a></li>
+                                            <li><a href="/adminHelp#data" title="">数据维护指南</a></li>
+                                            <li><a href="/adminHelp#sys" title="">系统管理指南</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+
+    <div class="center_content">
+    
+    <div class="left_content">
+    
+            <div class="sidebarmenu">
+            
+                <!-- 普通用户专有操作权限 -->
+                <% if(menu.userrole >= 2){ %>
+                <a class="menuitem_red" href="/res/resRep" title="新申报科研学术活动或查看当前活动进度"><% if(menu.flow.SRing){ %><%= '进行中的科研学术活动' %><% }else{ %><%= '申报科研学术活动' %><% } %></a>
+                <a class="menuitem_red" href="/edu/eduRep" title="申报新的科普教育实习、函影视拍摄、旅友管理、通讯设施管理活动">申报科普教育实习</a>
+
+                <a class="menuitem submenuheader" href="" >我的科研学术活动</a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/res/resActJoined" title="将我纳入活动成员的科研学术活动">我参加的科研活动</a></li>
+                    <li><a href="/res/resRep" title="新申报科研学术活动或查看当前活动进度"><% if(menu.flow.SRing){ %><%= '进行中的科研学术活动' %><% }else{ %><%= '申报科研学术活动' %><% } %></a></li>
+                    <li><a href="/res/resRepList" title="我申报的全部科研学术活动">科研活动申报列表</a></li>
+                    </ul>
+                </div>
+
+                <a class="menuitem submenuheader" href="" title="函影视拍摄、旅友管理、通讯设施管理" >我的科普教育实习</a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/edu/eduActJoined" title="将我纳入活动成员的科普教育实习活动">我参加的科普教育实习</a></li>
+                    <li><a href="/edu/eduRep" title="申报新的科普教育实习、影视拍摄、旅友管理、通讯设施管理活动">申报科普教育实习</a></li>
+                    <li><a href="/edu/eduRepList" title="我申报的全部科普教育实习活动">科普教育实习申报列表</a></li>
+                    </ul>
+                </div>
+
+                <% if(menu.userrole > 2.0){ %>
+                <a class="menuitem_green" href="/vol/volRepSta" title="申请成员天目山国家自然保护区志愿者">申请成为志愿者</a>
+                <% } else { %>
+                <a class="menuitem submenuheader" href="" >志愿者活动</a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/vol/volAct" title="正在招募志愿者的活动">进行中的志愿者活动</a></li>
+                    <li><a href="/vol/volActRepList" title="我申报的全部志愿者活动列表">我申报的志愿者活动</a></li>
+                    </ul>
+                </div>
+                <% } %>
+                
+                <% } %>
+
+                <!-- 审核员、管理员专有操作权限 -->
+                <% if(menu.userrole == 1 || menu.userrole == 0){ %>
+
+                <a class="menuitem submenuheader" href="" >管理科研学术活动<% if( (menu.count.res_count1+menu.count.res_count2+menu.count.res_count3) > 0){ %><%= '('+(menu.count.res_count1+menu.count.res_count2+menu.count.res_count3)+')' %><% } %></a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/res/resAudList?range=aud" title="审核用户提交的科研学术活动申请">待审核科研活动申请<% if( menu.count.res_count1 > 0){ %><%= '('+menu.count.res_count1+')' %><% } %></a></li>
+                    <li><a href="/res/resAudList?range=con" title="审核用户提交的科研学术活动合同">待确认科研活动合同<% if( menu.count.res_count2 > 0){ %><%= '('+menu.count.res_count2+')' %><% } %></a></li>
+                    <li><a href="/res/resAudList?range=resu" title="审核用户提交的科研学术活动成果">待确认科研活动成果<% if( menu.count.res_count3 > 0){ %><%= '('+menu.count.res_count3+')' %><% } %></a></li>
+                    <li><a href="/res/resAudList" title="全部科研学术活动">显示全部</a></li>
+                    </ul>
+                </div>
+
+                <a class="menuitem submenuheader" href="" >管理科普教育实习<% if( (menu.count.edu_count1+menu.count.edu_count2+menu.count.edu_count3) > 0){ %><%= '('+(menu.count.edu_count1+menu.count.edu_count2+menu.count.edu_count3)+')' %><% } %></a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/edu/eduAudList?range=aud" title="审核用户提交的科普教育实习申请">待审核科普实习申请<% if( menu.count.edu_count1 > 0){ %><%= '('+menu.count.edu_count1+')' %><% } %></a></li>
+                    <li><a href="/edu/eduAudList?range=con" title="审核用户提交的科普教育实习合同">待确认科普实习合同<% if( menu.count.edu_count2 > 0){ %><%= '('+menu.count.edu_count2+')' %><% } %></a></li>
+                    <li><a href="/edu/eduAudList?range=tra" title="待进行活动前培训的科普教育实习活动">待进行科普教育实习培训<% if( menu.count.edu_count3 > 0){ %><%= '('+menu.count.edu_count3+')' %><% } %></a></li>
+                    <li><a href="/edu/eduAudList" title="全部科普实习活动">显示全部</a></li>
+                    </ul>
+                </div>
+                <% } %>
+
+
+
+                <!-- 主管领导、管理员专有操作权限 -->
+                <% if(menu.userrole == 0.5 || menu.userrole == 0){ %>
+
+                <a class="menuitem submenuheader" href="" >审核科研学术活动<% if( menu.count.res_count1_1 > 0){ %><%= '('+menu.count.res_count1_1+')' %><% } %></a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/res/resAudList?range=leaderAud" title="审核用户提交的科研学术活动申请">待审核科研活动申请<% if( menu.count.res_count1_1 > 0){ %><%= '('+menu.count.res_count1_1+')' %><% } %></a></li>
+                    <li><a href="/res/resAudList" title="全部科研学术活动">显示全部</a></li>
+                    </ul>
+                </div>
+
+                <a class="menuitem submenuheader" href="" >审核科普教育实习<% if( menu.count.edu_count1_1 > 0){ %><%= '('+menu.count.edu_count1_1+')' %><% } %></a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/edu/eduAudList?range=leaderAud" title="审核用户提交的科普教育实习申请">待审核科普实习申请<% if( menu.count.edu_count1_1 > 0){ %><%= '('+menu.count.edu_count1_1+')' %><% } %></a></li>
+                    <li><a href="/edu/eduAudList" title="全部科普实习活动">显示全部</a></li>
+                    </ul>
+                </div>
+                <% } %>
+
+                <!-- 审核员、主管领导、管理员专有操作权限 -->
+                <% if(menu.userrole <= 1){ %>
+                <a class="menuitem submenuheader" href="" >宣传教育活动管理/志愿者需求</a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/vol/volActPub" title="发布新的志愿者活动">发布宣传教育活动/志愿者需求</a></li>
+                    <li><a href="/vol/volAct" title="已发布、正在接受志愿者申请的志愿者活动">待开始的活动/志愿者需求</a></li>
+                    <li><a href="/vol/volActList" title="查看/审核申报特定活动的志愿者">审核活动/志愿者</a></li>
+                    </ul>
+                </div>
+
+                <a class="menuitem submenuheader" href="" >志愿者管理</a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/vol/volAudList?range=aud" title="用户提交的天目山志愿者资格申请">待审核志愿者列表</a></li>
+                    <li><a href="/vol/volAudList?range=tra" title="通过志愿者审核，待参加培训的准志愿者">待培训志愿者列表</a></li>
+                    <li><a href="/vol/volAudList" title="现有志愿者及正在申请的志愿者">全部志愿者申请</a></li>
+                    </ul>
+                </div>
+                <% } %>
+
+                <!-- 管理员专有操作权限 -->
+                <% if(menu.userrole == 0){ %>
+                <a class='menuitem submenuheader' href=''>用户管理</a>
+                <div class='submenu'>
+                    <ul>
+                        <li><a href='/admin/enhRoleList' title="用户提交的权限更改申请">待处理权限申请</a></li>
+                        <li><a href='/admin/userMgr' title="系统全部注册用户信息">系统用户列表</a></li>
+                    </ul>
+                </div>
+                <a class='menuitem submenuheader' href=''>数据维护</a>
+                <div class='submenu'>
+                    <ul>
+                    <!-- <li><a href=''>数据字典管理</a></li> -->
+                    <li><a href='/admin/setAdminAddr' title="设置用户材料邮寄地址">设置邮寄地址</a></li>
+                    <li><a href='/admin/setMISEmail' title="设置系统通知邮件发件电子邮箱">设置系统邮箱</a></li>
+                    <li><a href='/admin/setIndexNotice' title="编辑系统首页显示的公告">发布首页公告</a></li>
+                    </ul>
+                </div>
+                <a class='menuitem submenuheader' href=''>系统管理</a>
+                <div class='submenu'>
+                    <ul>
+                    <li><a href='/admin/dataDump' title="备份/下载系统数据">数据转存</a></li>
+                    <li><a href='/admin/setOpening' title="开启/关闭系统">系统开关</a></li>
+                    <!-- <li><a href='/admin/init'>系统初始化</a></li> -->
+                    </ul>
+                </div>
+                <% } %>
+
+                <!-- 所有用户 -->
+                <a class="menuitem submenuheader" href="" >个人中心</a>
+                <div class="submenu">
+                    <ul>
+                    <li><a href="/user/userDet" title="查看/编辑个人用户信息">个人信息</a></li>
+                    <li><a href="/user/qrCode" title="用户在本系统中用户唯一标识">我的二维码</a></li>
+                    <li><a href="/user/enhRole" title="申请改变用户权限">申请提权</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+           <div class="sidebar_box">
+                <div class="sidebar_box_top"></div>
+                <div class="sidebar_box_content">
+                <h4>提示</h4>
+                <img src="/images/in/images/notice.png" alt="" title="" class="sidebar_icon_right" />
+                <p>
+                    科普教育实习包含影视拍摄、旅友管理、通讯设施管理等活动，有此类活动请按科普教育实习活动进行申请！
+                </p>                
+                </div>
+                <div class="sidebar_box_bottom"></div>
+            </div>
+
+            <div class="sidebar_box">
+                <div class="sidebar_box_top"></div>
+                <div class="sidebar_box_content">
+                <h3>参与流程</h3>
+                <img src="/images/in/images/info.png" alt="" title="" class="sidebar_icon_right" />
+                <p>使用前请首先阅读系统帮助文件。如有任何问题，请与天目山自然保护区管理局科研宣传科联系！ 电话：0571-63877033。</p>             
+                </div>
+                <div class="sidebar_box_bottom"></div>
+            </div>
+    
+    </div>  

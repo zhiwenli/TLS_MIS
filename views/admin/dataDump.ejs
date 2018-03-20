@@ -1,0 +1,52 @@
+<%- include ../header %>
+      
+    <div class="right_content"> 
+
+        <%- include ../tips %>
+        
+        <h2><%= menu.title %></h2>
+
+         <div class="form">
+         <form action="?baktype=sql&down=<%= Mysql_Bak %>" method="post" class="niceform" >
+
+                <fieldset>
+                    <dl>
+                        <dt><label for="MIS_email_addr">最新数据库备份:</label></dt>
+                        <input type="text" name="MIS_email_addr" id="MIS_email_addr" size="54" value="<% if(Mysql_Bak) { %><%= Mysql_Bak %><% } %>" readonly="true" /></dd>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="重新备份" onclick="r()"/>
+                        <input type="submit" name="operate" id="submit" value="下载文件" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>
+
+<h2>文件备份</h2>
+
+         <div class="form">
+         <form action="?baktype=files&down=<%= Files_Bak %>" method="post" class="niceform" >
+
+                <fieldset>
+                    <dl>
+                        <dt><label for="MIS_email_addr">最新文件备份:</label></dt>
+                        <input type="text" name="MIS_email_addr" id="MIS_email_addr" size="54" value="<% if(Files_Bak) { %><%= Files_Bak %><% } %>" readonly="true"/></dd>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="重新备份" onclick="r()"/>
+                        <input type="submit" name="operate" id="submit" value="下载文件" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

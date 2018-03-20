@@ -1,0 +1,28 @@
+{
+  "name": "TLS_MIS",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "connect-flash": "~0.1.1",
+    "connect-multiparty": "^2.0.0",
+    "connect-mysql": "latest",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "express-session": "latest",
+    "forever": "^0.15.1",
+    "gm": "^1.22.0",
+    "morgan": "~1.6.1",
+    "multer": "^1.1.0",
+    "mysql": "latest",
+    "node-schedule": "^1.0.0",
+    "node-uuid": "^1.4.7",
+    "nodemailer": "^2.2.1",
+    "serve-favicon": "~2.3.0"
+  }
+}

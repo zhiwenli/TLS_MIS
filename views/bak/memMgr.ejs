@@ -1,0 +1,56 @@
+<%- include header %>
+    
+    <div class="right_content">
+
+
+    <h2><%= menu.title %></h2>
+
+     <%- include tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return idcardChk();">
+
+                <input type="hidden" name="sr_id" id="sr_id" value="<%= sr_id %>" />
+         
+                <fieldset>
+                    
+                    <dl>
+                        <dt><label for="numOfPeople">总人数:</label></dt>
+                        <dd><input type="text" name="numOfPeople" id="numOfPeople" size="54" value="<%= numOfPeople %>" readonly="true" /></dd>
+                    </dl>
+
+                    <% for(var i = 0; i < numOfPeople; i++) { %>
+                    <% if(rows.length > i) { %>
+                        <input type="hidden" name="<%= i %>mem_id" id="<%= i %>mem_id" value="<%= rows[i]['Mem_Id'] %>" />
+                    <% } %>
+
+                    <dl>
+                        <dt><label for="<%= i %>name">成员<%= i %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp姓名:</label></dt>
+                        <dd><input type="text" name="<%= i %>name" id="<%= i %>name" size="54" maxlength="10" value="<% if(rows.length > i) { %><%= rows[i]['Mem_Name'] %><% } %>" /></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="ID_Card">身份证号:</label></dt>
+                        <dd><input type="text" name="<%= i %>ID_Card" id="<%= i %>ID_Card" size="54" maxlength="18" value="<% if(rows.length > i) { %><%= rows[i]['Mem_ID_Card'] %><% } %>" /></dd>
+                    </dl>
+                    <% } %>
+
+                    <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="保存" />
+                        <input type="submit" name="operate" id="submit" value="删除" onClick="delcfm()" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include footer %>

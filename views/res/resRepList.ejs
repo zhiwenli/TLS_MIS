@@ -1,0 +1,102 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+        <tr>
+            <th scope="col" class="rounded-company">ID</th>
+            <th scope="col" class="rounded">活动名称</th>
+            <th scope="col" class="rounded">申请人</th>
+            <th scope="col" class="rounded">参与人数</th>
+            <th scope="col" class="rounded">开始时间</th>
+            <th scope="col" class="rounded">审核状态</th>
+            <th scope="col" class="rounded-q4">详情/操作</th>
+        </tr>
+        </thead>
+    <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+         </tr>
+     </tfoot>
+
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+            <td><%= rows[i]["SR_Id"] %></td>
+            <td><%= rows[i]["SR_Title"] %></td>
+            <td><%= rows[i]["Name"] %></td>
+            <td><%= rows[i]["Peop_Count"] %></td>
+            <td><%= rows[i]["Start_Time"] %></td>
+            <td>
+                <% if(rows[i]["Res_Sta"] == 2 || rows[i]["Res_Sta"] == 0.5) { %>
+                <img src="/images/in/images/warning.png" alt="" title="活动申请待审核" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Res_Sta"] == 0 ) { %>
+                <img src="/images/in/images/valid.png" alt="" title="活动申请已通过" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Res_Sta"] == 1) { %>
+                <img src="/images/in/images/error.png" alt="" title="活动申请已被拒绝" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Res_Sta"] == 3) { %>
+                <img src="/images/in/images/warning.png" alt="" title="待提交活动申请" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Res_Sta"] == 4) { %>
+                <img src="/images/in/images/warning.png" alt="" title="待添加活动成员" border="0" height=16 width=16 />
+                <% } else if(rows[i]["Res_Sta"] == 5) { %>
+                <%= "已结束" %>
+                <% } else if(rows[i]["Res_Sta"] == 6) { %>
+                <%= "已撤销" %>
+                <% } else { %>
+                <%= "状态异常" %>
+                <% } %>
+            </td>
+
+            <td>
+                <a href="/res/resRepSta?srid=<%= rows[i]["SR_Id"] %>">
+                <img src="/images/in/images/user_edit.png" alt="" title="" border="0" />
+                </a>
+            </td>
+
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+<!-- <a href="/vol/volActPub" class="bt_green"><span class="bt_green_lft"></span><strong>--</strong><span class="bt_green_r"></span></a>-->
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

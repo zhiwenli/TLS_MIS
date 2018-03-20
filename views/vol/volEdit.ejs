@@ -1,0 +1,55 @@
+<%- include ../header %>
+      
+    <div class="right_content">            
+        
+        <h2><%= menu.title %></h2>
+
+        <%- include ../tips %>
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+            <h3>提示</h3>
+            <img src="/images/in/images/info.png" alt="" title="" class="centerbar_icon_right" />
+            <ul>
+                <li>
+                    用户ID：<strong><%= row['User_Id'] %></strong>
+                </li>
+                <li>
+                    姓名：<strong><%= row['Name'] %></strong>
+                </li>
+                <li>
+                若当前用户已顺利完成国家自然保护区教育培训，请点击通过培训，该用户将正式拥有志愿者身份。
+                </li>
+            </ul>
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+     
+        <div class="form">
+        <form action="?user_id=<%= row['User_Id'] %>" method="post" class="niceform">
+         
+            <fieldset>
+
+                <dl>
+                    <dt><label for="vol_sta">修改志愿者状态：</label></dt>
+                    <dd>
+                        <input type="radio" name="vol_sta" id="vol_sta" value="2.1" /><label class="check_label">保留志愿者身份，重新参加培训</label>
+                        <input type="radio" name="vol_sta" id="vol_sta" value="2.4" /><label class="check_label">撤销志愿者身份</label>
+                    </dd>
+                </dl>
+
+                 <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="保存" onclick="subChk("提交操作")"/>
+                    <input type="submit" name="operate" id="submit" value="取消" />
+                 </dl>
+                
+            </fieldset>
+                
+        </form>
+        </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

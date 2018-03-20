@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/in/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/stylesheets/in/niceforms-default.css" />
+</head>
+
+<body>
+
+	<div class="centerbar_box">
+        <div class="centerbar_box_top"></div>
+        <div class="centerbar_box_content">
+            <h4><%= row['Mem_Name'] %></h4>
+
+            <ul>
+                <li>类别：<strong><%= row['Mem_Type'] %></strong></li>
+                <li>性别：  <% if(row['Mem_Sex'] == 0){ %>
+                                <strong>男</strong>
+                            <% }else if(row['Mem_Sex'] == 1){ %>
+                                <strong>女</strong>
+                            <% } else { %>
+                                <small><font color="red">异常<%= row['Mem_Sex'] %></font></samll></strong>
+                            <% } %>   </li>
+                
+                <li>单位：<strong><%= row['Mem_Dep'] %></strong></li>
+                <li>二级单位：<strong><%= row['Mem_Sec_Dep'] %></strong></li>
+                <li>电子邮件：<strong><%= row['Mem_Email'] %></strong></li>
+                <li>电话：<strong><%= row['Mem_Mobile'] %></strong></li>
+                <li>身份证：<strong><%= row['Mem_ID_Card'] %></strong></li>
+                <li>专业：<strong><%= row['Mem_Major'] %></strong></li>
+                <li>证件类型：<strong><%= row['Mem_Cre_Type'] %></strong></li>
+                <li>证件编号：<strong><%= row['Mem_Cre_Id'] %></strong></li>
+            </ul> 
+
+        </div>
+        <div class="centerbar_box_bottom"></div>
+    </div>
+
+</body>
+
+</html>

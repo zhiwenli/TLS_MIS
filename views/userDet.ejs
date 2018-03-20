@@ -1,0 +1,52 @@
+                    
+<%- include header %>
+    
+    <div class="right_content">            
+        
+        <h2><%= menu.title %></h2>
+
+        <%- include tips %>
+
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+                <h4><%= row['Name'] %></h4>
+
+                <ul>
+                    <li>角色：  <% if(row['Role'] == 0){ %>
+                                    <strong>管理员</strong>
+                                <% } else if(row['Role'] == 1){ %>
+                                    <strong>审核员</strong>
+                                <% } else if(row['Role'] == 2){ %>
+                                    <strong>普通用户 | 志愿者</strong>
+                                <% } else { %>
+                                    <strong>普通用户</strong>
+                                <% } %>   </li>
+                    <li>性别：  <% if(row['Sex'] == 0){ %>
+                                    <strong>男</strong>
+                                <% }else if(row['Sex'] == 1){ %>
+                                    <strong>女</strong>
+                                <% } else { %>
+                                    <small><font color="red">异常</font></samll></strong>
+                                <% } %>   </li>
+                    
+                    <li>单位：<strong><%= row['Dep'] %></strong></li>
+                    <li>二级单位：<strong><%= row['Sec_Dep'] %></strong></li>
+                    <li>电子邮件：<strong><%= row['Email'] %></strong></li>
+                    <li>电话：<strong><%= row['Mobile'] %></strong></li>
+                    <li>身份证：<strong><%= row['ID_Card'] %></strong></li>
+                    <li>住址：<strong><%= row['Addr'] %></strong></li>
+                    <li>注册时间：<strong><%= row['Reg_Time'] %></strong></li>
+                    <li>最近登录：<strong><%= row['Nearest_Time'] %></strong></li>
+                </ul> 
+
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+        
+        <a href="<%= back %>" class="bt_green"><span class="bt_green_lft"></span><strong>返回</strong><span class="bt_green_r"></span></a>
+        
+
+     </div><!-- end of right content-->
+            
+<%- include footer %>

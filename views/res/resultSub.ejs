@@ -1,0 +1,91 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+
+        <div class="form">
+        <form action="#" method="post" class="niceform" >
+
+                <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                </dl>
+
+
+                <fieldset>
+                    
+                <dl>
+                    <dt><label for="result_name">成果名称:</label></dt>
+                    <dd><input type="text" name="result_name" id="result_name" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Name'] %><% } %>"/></dd>
+                </dl>
+
+                <dl>
+                    <dt><label for="result_dep">完成单位:</label></dt>
+                    <dd><input type="text" name="result_dep" id="result_dep" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Dep'] %><% } %>"/></dd>
+                </dl>
+
+                <dl>
+                    <dt><label for="result_author">联系人:</label></dt>
+                    <dd><input type="text" name="result_author" id="result_author" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Author'] %><% } %>"/></dd>
+                </dl>
+
+                <dl>
+                    <dt><label for="result_author_contact">联系方式:</label></dt>
+                    <dd><input type="text" name="result_author_contact" id="result_author_contact" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Author_Contact'] %><% } %>" placeholder="Email/Tel" /></dd>
+                </dl>
+
+                <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="保存" />
+                </dl>
+                     
+                </fieldset>
+                
+        </form>
+     
+        <div class="form">
+        <form action="#" method="post" class="niceform" onsubmit="return fileChk();" enctype="multipart/form-data">
+
+                <fieldset>
+                    
+                <dl >
+                    <dt><label for="uploadfile">上传科研成果:</label></dt>
+                    <dd><input type="file" name="uploadfile" id="uploadfile" accept=".zip,.rar"/>
+                    <% if(row["Result_File"] != ""){ %>
+                        <p id="is_uploaded" ><% if(row["Result_File"] != null){ %><%= "已上传"+row["Result_File"]+"文件" %><% } %></p>
+                    <% } %></dd>
+                </dl>
+
+                <dl class="submit">
+                    <a href="/index"><input type="button" value="返回"></input></a>
+                    <input type="submit" name="operate" id="submit" value="上传成果压缩包" />
+                </dl>
+                     
+                </fieldset>
+                
+        </form>
+
+        <form action="#" method="post" class="niceform" onsubmit="return resExChk();">
+         
+            <fieldset>
+                
+                <dl>
+                    <dt><label for="result_ex">邮寄信息:</label></dt>
+                    <dd><textarea name="result_ex" id="result_ex" rows="5" cols="36" placeholder="请输入快递公司及单号(若已上传成果文件则无需填写该项)" ><% if(row['Result_Ex']){ %><%= row['Result_Ex'] %><% } %></textarea></dd>
+                </dl>
+                
+                
+                 <dl class="submit">
+                    <a href="/index"><input type="button" value="返回"></input></a>
+                    <input type="submit" name="operate" id="submit" value="提交快递信息" />
+                 </dl>
+                 
+            </fieldset>
+                
+         </form>
+        </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

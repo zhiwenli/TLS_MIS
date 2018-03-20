@@ -1,0 +1,81 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+<table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+        <tr>
+            <th scope="col" class="rounded-company">编号</th>
+            <th scope="col" class="rounded">姓名</th>
+            <th scope="col" class="rounded">类别</th>
+            <th scope="col" class="rounded">单位</th>
+            <th scope="col" class="rounded">二级单位</th>
+            <th scope="col" class="rounded">专业</th>
+            <th scope="col" class="rounded">证件类型</th>
+            <th scope="col" class="rounded">证件号码</th>
+        </tr>
+        </thead>
+    <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+         </tr>
+     </tfoot>
+
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+        <tr>
+            <td><%= beforeRec+i+1 %></td>
+            <td style="text-decoration:underline; cursor:pointer" onclick="openDialog('/memDet?memid=<%= rows[i]["Mem_Id"] %>')"><%= rows[i]["Mem_Name"] %><small><font color="red"><% if(beforeRec+i == 0) { %><%= "(负责人)" %><% } %></font></small></td>
+            <td><%= rows[i]["Mem_Type"] %></td>
+            <td><%= rows[i]["Mem_Dep"] %></td>
+            <td><%= rows[i]["Mem_Sec_Dep"] %></td>
+            <td><%= rows[i]["Mem_Major"] %></td>
+            <td><%= rows[i]["Mem_Cre_Type"] %></td>
+            <td><%= rows[i]["Mem_Cre_Id"] %></td>
+        </tr>
+        <% } %>
+
+     </tbody>
+ </table>
+
+<a href="<%= back %>" class="bt_green" ><span class="bt_green_lft"></span><strong>返回</strong><span class="bt_green_r"></span></a>
+
+ <!-- <a href="#" class="bt_red"><span class="bt_red_lft"></span><strong>Delete items</strong><span class="bt_red_r"></span></a>  -->
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?srid=<%= srid %>&page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?srid=<%= srid %>&page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?srid=<%= srid %>&page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?srid=<%= srid %>&page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

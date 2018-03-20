@@ -1,0 +1,45 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <script type="text/javascript" src="/javascripts/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="/javascripts/qrcode.js"></script>
+    
+    <div id="qrcodeCanvas" align="center"><p>*鼠标右键另存为可直接保存图片</p></div>
+
+    <script>
+        jQuery('#qrcodeCanvas').qrcode({
+            width : 400,
+            height : 400,
+            text : toUtf8("<%= Qr_Code %>")
+        });
+
+        //二维码中文支持
+        function toUtf8(str) {
+            var out, i, len, c;
+            out = "";
+            len = str.length;
+            for(i = 0; i < len; i++) {
+                c = str.charCodeAt(i);
+                if ((c >= 0x0001) && (c <= 0x007F)) {
+                    out += str.charAt(i);
+                } else if (c > 0x07FF) {
+                    out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                    out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+                    out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+                } else {
+                    out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+                    out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+                }
+            }
+            return out;
+        }
+    </script>
+     
+    </div><!-- end of right content-->
+            
+<%- include ../footer %>

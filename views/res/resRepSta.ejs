@@ -1,0 +1,149 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+        <div class="centerbar_box">
+            <div class="centerbar_box_top"></div>
+            <div class="centerbar_box_content">
+                <h4><%= row['SR_Title'] %></h4>
+
+                <ul>
+                    <li>编号：<strong><%= row['SR_Id'] %></strong></li>
+                    <li>主题：<strong><%= row['SR_Title'] %></strong></li>
+                    <li>地点：<strong><%= row['Place'] %></strong></li>
+                    <li>路线：<strong><%= row['Route'] %></strong></li>
+                    <li>住宿：<strong><%= row['Acmdt'] %></strong></li>
+                    <li>人数：<strong><%= row['Peop_Count'] %></strong></li>
+                    <li>开始时间：<strong><%= row['Start_Time'] %></strong></li>
+                    <li>结束时间：<strong><%= row['End_Time'] %></strong></li>
+                    <li>成果提交时间：<strong><%= row['Submit_Time'] %></strong></li>
+                    <li>活动内容：<strong><%= row['Act_Content'] %></strong></li>
+                    <li>特殊需求：<strong><% if(row['Spc_Require'] != ''){ %><%= row['Spc_Require'] %><% } else { %><%= '无' %><% } %></strong></li>
+                </ul> 
+            </div>
+            <div class="centerbar_box_bottom"></div>
+        </div>
+
+        <!-- 活动待审 -->
+        <% if(row['Res_Sta'] == 2){ %>
+
+        <div class="form">
+        <form action="#" method="post" class="niceform">
+            <fieldset>
+                <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="查看成员列表" />
+                    <input type="submit" name="operate" id="submit" value="撤销活动" onclick="subChk('撤销当前活动申请')" />
+                </dl>
+            </fieldset>
+        </form>
+        </div>
+
+        <% } %>
+
+        <!-- 活动被审核拒绝 -->
+        <% if(row['Res_Sta'] == 1){ %>
+
+        <div class="form">
+        <form action="#" method="post" class="niceform">
+            <fieldset>
+                <dl>
+                    <dt><label for="aud_sug">意见:</label></dt>
+                    <dd><textarea type="text" name="aud_sug" id="aud_sug" rows="5" cols="36" value="" readonly="true" ><% if(row) { %><%= row['Aud_Sug'] %><% } %></textarea></dd>
+                </dl>
+                <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="重新申请" />
+                    <input type="submit" name="operate" id="submit" value="查看成员列表" />
+                    <input type="submit" name="operate" id="submit" value="撤销活动"  onclick="subChk('撤销当前活动申请')" />
+                </dl>
+            </fieldset>
+        </form>
+        </div>
+
+        <% } %>
+
+        <!-- 活动审核成功，合同审核成功，等待开始 -->
+        <% if(row['Res_Sta'] == 0 && row['Contract_Ok'] == 1){ %>
+
+        <div class="form">
+        <form action="#" method="post" class="niceform">
+            <fieldset>
+                <dl>
+                    <dt><label for="download">查看合同:</label></dt>
+                    <% if(contract){ %>
+                    <dd><button type="button" onclick="downloadfile('<%= contract %>')">点击下载</button></dd>
+                    <% }else{ %>
+                    <dd><button type="button" disabled='disabled'>未上传</button></dd>
+                    <% } %>
+                </dl>
+
+                <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="查看成员列表" />
+                </dl>
+            </fieldset>
+        </form>
+        </div>
+
+        <% } %>
+
+        <!-- 活动结束 -->
+        <% if(row['Res_Sta'] == 5){ %>
+
+        <div class="form">
+        <form action="#" method="post" class="niceform">
+            <fieldset>
+                <dl>
+                    <dt><label for="download">查看合同:</label></dt>
+                    <% if(contract){ %>
+                    <dd><dd><button type="button" onclick="downloadfile('<%= contract %>')">点击下载</button></dd></dd>
+                    <% }else{ %>
+                    <dd><button type="button" disabled='disabled'>未上传</button></dd>
+                    <% } %>
+                </dl>
+
+                <dl>
+                    <dt><label for="download">查看成果:</label></dt>
+                    <% if(result){ %>
+                    <dd><dd><button type="button" onclick="downloadfile('<%= result %>')">点击下载</button></dd></dd>
+                    <% }else{ %>
+                    <dd><button type="button" disabled='disabled'>未上传</button></dd>
+                    <% } %>
+                </dl>
+
+                <dl class="submit">
+                    <input type="submit" name="operate" id="submit" value="查看成员列表" />
+                    <input type="submit" name="operate" id="submit" value="返回" />
+                </dl>
+            </fieldset>
+        </form>
+        </div>
+
+        <% } %>
+
+        <!-- 活动撤销 -->
+        <% if(row['Res_Sta'] == 6){ %>
+
+        <div class="form">
+        <form action="#" method="post" class="niceform">
+            <fieldset>
+                <dl>
+                    <dt><label for="download">查看合同:</label></dt>
+                    <% if(contract){ %>
+                    <dd><dd><button type="button" onclick="downloadfile('<%= contract %>')">点击下载</button></dd></dd>
+                    <% }else{ %>
+                    <dd><button type="button" disabled='disabled'>未上传</button></dd>
+                    <% } %>
+                </dl>
+
+            </fieldset>
+        </form>
+        </div>
+
+        <% } %>
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

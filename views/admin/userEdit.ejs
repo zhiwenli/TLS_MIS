@@ -1,0 +1,101 @@
+                    
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+        <h2><%= menu.title %></h2>
+
+        <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+         
+                <fieldset>
+                    <dl>
+                        <dt><label for="Id">编号:<%= row['User_Id'] %></label></dt>
+                        <dd><input type="text" name="Id" id="Id" size="54" readonly="true" value="<%= User_Id %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="role">角色:</label></dt>
+                        <dd>
+                            <select size="1" name="role" id="role" >
+                                <option value="0" <% if(row['Role'] == 0){ %><%= 'selected' %><% } %>>管理员</option>
+                                <option value="0" <% if(row['Role'] == 0.5){ %><%= 'selected' %><% } %>>主管领导</option>
+                                <option value="1" <% if(row['Role'] == 1){ %><%= 'selected' %><% } %>>科研宣教科人员</option>
+                                <option value="2" <% if(Math.floor(row['Role']) == 2){ %><%= 'selected' %><% } %>>普通用户</option>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="username">用户名:</label></dt>
+                        <dd><input type="text" name="username" id="username" size="54" disable="false" value="<%= row['Name'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="reset_pwd">重置密码:</label></dt>
+                        <dd>
+                            <select size="1" name="reset_pwd" id="reset_pwd" >
+                                <option value="true">是 (重置用户密码为其身份证号)</option>
+                                <option value="flase" selected='selected'>否</option>
+                            </select>
+                        </dd>
+                    </dl>
+                    
+                    
+                    <dl>
+                        <dt><label for="gender">性别:</label></dt>
+                        <dd>
+                            <select size="1" name="gender" id="gender" >
+                                <option value="0" <% if(row['Sex'] == 0){ %><%= "selected='selected'" %><% } %>>男</option>
+                                <option value="1" <% if(row['Sex'] == 1){ %><%= "selected='selected'" %><% } %>>女</option>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="email">邮件:</label></dt>
+                        <dd><input type="text" name="email" id="email" size="54" disable="false" value="<%= row['Email'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="mobile">电话:</label></dt>
+                        <dd><input type="text" name="mobile" id="mobile" size="54" disable="false" value="<%= row['Mobile'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="ID_Card">身份证:</label></dt>
+                        <dd><input type="text" name="ID_Card" id="ID_Card" size="54" disable="false" value="<%= row['ID_Card'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="reg_time">注册时间:</label></dt>
+                        <dd><input type="text" name="reg_time" id="reg_time" size="54" readonly="true" value="<%= row['Reg_Time'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="nearest_time">最近登录:</label></dt>
+                        <dd><input type="text" name="nearest_time" id="nearest_time" size="54" readonly="true" value="<%= row['Nearest_Time'] %>"/></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="addr">住址:</label></dt>
+                        <dd><textarea name="addr" id="addr" rows="5" cols="36" ><%= row['Addr'] %></textarea></dd>
+                    </dl>
+                    
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="保存" />
+                        <input type="submit" name="operate" id="submit" value="删除" onClick="delcfm()" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include ../footer %>

@@ -1,0 +1,3 @@
+﻿//重启或手动运行BootAutoStart.sh即可调用fotever start命令启动node服务器
+
+//工程根目录下执行forever stop bin/www即停止node服务器

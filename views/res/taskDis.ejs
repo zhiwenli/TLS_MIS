@@ -1,0 +1,77 @@
+<% include header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+
+    <%- include tips %>
+
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+         <tr>
+             <th scope="col" class="rounded-company">ID</th>
+             <th scope="col" class="rounded">主题</th>
+             <th scope="col" class="rounded">申请人</th>
+             <th scope="col" class="rounded">审核状态</th>
+             <th scope="col" class="rounded">合同状态</th>
+             <th scope="col" class="rounded">成果状态</th>
+             <th scope="col" class="rounded">状态更新时间</th>
+             <th scope="col" class="rounded-q4">查看/编辑</th>
+         </tr>
+     </thead>
+     <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+
+         </tr>
+     </tfoot>
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+            <!-- <td><input type="checkbox" name="" /></td> -->
+            <td><%= rows[i]["SR_Id"] %></td>
+            <td><%= rows[i]["SR_Title"] %></td>
+            <td><%= rows[i]["User_Id"] %></td>
+            <td><%= rows[i]["Is_Pending"] %></td>
+            <td><%= rows[i]["Contract_Ok"] %></td>
+             
+            <td>
+                <% if(rows[i]["Result_Ok"]==0) { %>
+                <%= "未通过" %>
+                <% } else if(rows[i]["Result_Ok"]==1) { %>
+                <%= "已通过" %>
+                <% } %>
+            </td>
+            <td><%= rows[i]["Update_Time"] %></td>
+            <td><a href="/userEdit?srid=<%= rows[i]["User_Id"] %>"><img src="/images/in/images/user_edit.png" alt="" title="" border="0" /></a></td>
+             <!-- <td><a href="#" class="ask"><img src="/images/in/images/trash.png" alt="" title="" border="0" /></a></td> -->
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+ <!-- <a href="#" class="bt_green"><span class="bt_green_lft"></span><strong>Add new item</strong><span class="bt_green_r"></span></a> -->
+ <!-- <a href="#" class="bt_red"><span class="bt_red_lft"></span><strong>Delete items</strong><span class="bt_red_r"></span></a>  -->
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+    <a href=""><%= page %>/<%= totalPage %></a>
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include footer %>

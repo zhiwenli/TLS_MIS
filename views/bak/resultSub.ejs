@@ -1,0 +1,61 @@
+<%- include header %>
+    
+    <div class="right_content">            
+        
+
+           
+     <h2>Nice Form example</h2>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform" onsubmit="return fileChk();" enctype="multipart/form-data">
+                         <dl>
+                    <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+                    </dl>
+
+                <fieldset>
+                    
+                    <dl >
+                        <dt><label for="uploadfile">上传科研成果:</label></dt>
+                        <dd><input type="file" name="uploadfile" id="uploadfile" accept=".zip,.rar"/></dd>
+                        <% if(row["Result_Ex"]){ %>
+                            <p id="is_uploaded" ><%= "已上传" %></p>
+                        <% } %> 
+                    </dl>
+
+                     <dl class="submit">
+                        <a href="/undo"><input type="button" value="返回"></input></a>
+                        <input type="submit" name="operate" id="submit" value="上传成果压缩包" />
+                     </dl>
+                     
+                     
+                    
+                </fieldset>
+                
+         </form>
+
+        <form action="#" method="post" class="niceform" onsubmit="return resExChk();">
+         
+                <fieldset>
+                    
+                    <dl>
+                        <dt><label for="result_ex">邮寄信息:</label></dt>
+                        <dd><textarea name="result_ex" id="result_ex" rows="5" cols="36" placeholder="请输入快递公司及单号(若已上传扫描件则无需填写该项)" ><% if(row['Result_Ex']){ %><%= row['Result_Ex'] %><% } %></textarea></dd>
+                    </dl>
+                    
+                    
+                     <dl class="submit">
+                        <a href="/undo"><input type="button" value="返回"></input></a>
+                        <input type="submit" name="operate" id="submit" value="提交快递信息" />
+                     </dl>
+                     
+                     
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+<%- include footer %>

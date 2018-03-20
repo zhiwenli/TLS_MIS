@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>浙江天目山国家级自然保护区科研科普活动管理系统</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/in/style.css" />
+<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/ddaccordion.js"></script>
+<script type="text/javascript" src="/javascripts/confirm.js"></script>
+<script type="text/javascript" src="/javascripts/md5.js"></script>
+<script type="text/javascript">
+ddaccordion.init({
+	headerclass: "submenuheader", //Shared CSS class name of headers group
+	contentclass: "submenu", //Shared CSS class name of contents group
+	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+	defaultexpanded: [], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+	animatedefault: false, //Should contents open by default be animated into view?
+	persiststate: true, //persist state of opened contents within browser session?
+	toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+	togglehtml: ["suffix", "<img src='images/plus.gif' class='statusicon' />", "<img src='images/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+		//do nothing
+	},
+	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+		//do nothing
+	}
+})
+</script>
+
+<script type="text/javascript" src="/javascripts/jconfirmaction.jquery.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.ask').jConfirmAction();
+	});
+	
+</script>
+
+<script language="javascript" type="text/javascript" src="/javascripts/niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="/stylesheets/in/niceforms-default.css" />
+
+</head>
+<body>
+<div id="main_container">
+
+	<div class="header_login">
+    <div class="logo"><a href="#"><img src="/images/in/images/logo.png" alt="" title="" border="0" /></a></div>
+    
+    </div>
+
+     
+         <div class="register_form">
+         
+         <h3><strong>注册</strong></h3>
+         
+         
+         <a href="login" class="forgot_pass">登录</a> 
+         
+         <form action="" method="post" class="niceform" onsubmit="return regChk();">
+         	
+         		<p align='center'><small><font color="red">*</font>号标记项为必填</small></p>
+		        <% if(regTips) { %> 
+		        <p align='center'><font color="red"><%= regTips %></font></p>
+		        <% } %>
+
+                <fieldset>
+                    <dl>
+                        <dt><label for="usernamesignup"> 姓名 <font color="red">*</font>：</label></dt>
+                        <dd><input id="usernamesignup" name="usernamesignup" required="required" type="text" size="54" placeholder="请输入真实姓名"/></dd>
+                    </dl>
+
+	    			<dl> 
+	                    <dt><label for="sexsignup" data-icon="e" > 性别 <font color="red">*</font>：</label></dt>
+	                    <dd>
+                            <input type="radio" name="sexsignup" id="sexsignup" value="0" checked /><label class="check_label" >男</label>
+                            <input type="radio" name="sexsignup" id="sexsignup" value="1" /><label class="check_label">女</label>
+                        </dd>
+	                </dl>
+					<dl>
+	                    <dt><label for="mobilesignup"> 电话 <font color="red">*</font>：</label></dt>
+	                    <dd><input id="mobilesignup" name="mobilesignup" required="required" size="54" type="text" placeholder="中国大陆地区移动电话"/> </dd>
+	                </dl>
+					<dl>
+	                    <dt><label for="ID_Cardsignup" > 身份证号 <font color="red">*</font>：</label></dt>
+	                    <dd><input id="ID_Cardsignup" name="ID_Cardsignup" required="required" size="54" type="text" placeholder="二代身份证编号"/> </dd>
+	                </dl>
+					<dl>
+	                    <dt><label for="emailsignup" > 邮箱地址 <font color="red">*</font>：</label></dt>
+	                    <dd><input id="emailsignup" name="emailsignup" required="required" size="54" type="text" placeholder="邮箱地址(登录账户名)"/> </dd>
+	                </dl>
+	             	<dl>
+	                    <dt><label for="depsignup" > 单位 <font color="red">*</font>：</label></dt>
+	                    <dd><input id="depsignup" name="depsignup" required="required" size="54" type="text" placeholder="工作单位"/> </dd>
+	                </dl>
+	                <dl>
+	                    <dt><label for="secdepsignup" > 二级单位：</label></dt>
+	                    <dd><input id="secdepsignup" name="secdepsignup" size="54" type="text" placeholder="所属二级单位"/> </dd>
+	                </dl>
+	                <dl>
+	                    <dt><label for="addrsignup" > 住址：</label></dt>
+	                    <dd><input id="addrsignup" name="addrsignup" size="54" type="text" placeholder="家庭住址或工作地址"/> </dd>
+	                </dl>
+	                <dl>
+	                    <dt><label for="passwordsignup"> 密码 <font color="red">*</font>：</label></dt>
+	                    <dd><input id="passwordsignup" name="passwordsignup" required="required" size="54" type="password" placeholder="可以包含大小写字母、数字和符号"/></dd>
+	                </dl>
+	                <dl>
+	                    <dt><label for="passwordsignup_confirm">确认密码 <font color="red">*</font>：</label></dt>
+	                    <dd><input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" size="54" type="password" placeholder="可以包含大小写字母、数字和符号"/></dd>
+	                </dl>
+           
+                    <dl class="submit">
+                    	<input type="submit" name="submit" id="submit" value="注册" />
+                    </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>
+          
+	
+    
+    <div class="footer_login">
+    
+    	<div class="left_footer">浙ICP备xxxxxxxx号 | 浙江天目山国家级自然保护区管理局 版权所有 © 0000-0000</div>
+    	<div class="right_footer"><img src="/images/in/images/indeziner_logo.png" alt="" title="" border="0" /></div>
+    
+    </div>
+
+</div>		
+</body>
+</html>

@@ -1,0 +1,81 @@
+<%- include ../header %>
+    
+    <div class="right_content">            
+        
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+     
+         <div class="form">
+         <form action="#" method="post" class="niceform">
+
+            <dl>
+                <p align="center"><% if(message) { %><font color='red'><%= message %></font><% } %></p>
+            </dl>
+                
+         
+                <fieldset>
+
+                    <dl>
+                    <dt><label for="result_name">成果名称:</label></dt>
+                    <dd><input type="text" name="result_name" id="result_name" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Name'] %><% } %>" readonly="true" /></dd>
+                </dl>
+
+                <dl>
+                    <dt><label for="result_dep">完成单位:</label></dt>
+                    <dd><input type="text" name="result_dep" id="result_dep" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Dep'] %><% } %>" readonly="true" /></dd>
+                </dl>
+
+                <dl>
+                    <dt><label for="result_author">联系人:</label></dt>
+                    <dd><input type="text" name="result_author" id="result_author" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Author'] %><% } %>" readonly="true" /></dd>
+                </dl>
+
+                <dl>
+                    <dt><label for="result_author_contact">联系方式:</label></dt>
+                    <dd><input type="text" name="result_author_contact" id="result_author_contact" size="54" maxlength="100" required="required" value="<% if(row) { %><%= row['Result_Author_Contact'] %><% } %>" readonly="true" /></dd>
+                </dl>
+
+                    <dl>
+                        <dt><label for="download">下载科研成果:</label></dt>
+                        <% if(result_file){ %>
+                        <dd><button type="button" onclick="downloadfile('<%= result_file %>')">点击下载</button></dd>
+                        <% }else{ %>
+                        <dd><button type="button" disabled="disabled">用户未上传合同扫描件</button></dd>
+                        <% } %>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="result_ex">邮寄信息:</label></dt>
+                        <dd><textarea name="result_ex" id="result_ex" rows="5" cols="36" readonly="true" ><% if(row['Result_Ex']){ %><%= row['Result_Ex'] %><% }else{ %><%= "用户未提交邮寄信息" %><% } %></textarea></dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="result_ok" >审批结果:</label></dt>
+                        <dd>
+                            <select size="1" name="result_ok" id="result_ok" >
+                                    <option value="1" selected='selected' >批准</option>
+                                    <option value="2" >拒绝</option>
+                            </select>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><label for="aud_sug">审批意见:</label></dt>
+                        <dd><textarea type="text" name="aud_sug" id="aud_sug" rows="5" cols="36" placeholder="若不通过，请填写审批意见"><% if(row) { %><%= row['Aud_Sug'] %><% } %></textarea></dd>
+                    </dl>
+
+                     <dl class="submit">
+                        <input type="submit" name="operate" id="submit" value="确定" />
+                        <input type="submit" name="operate" id="submit" value="取消" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+      
+     
+     </div><!-- end of right content-->
+            
+                    
+<%- include ../footer %>

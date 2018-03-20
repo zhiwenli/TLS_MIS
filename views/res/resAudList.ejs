@@ -1,0 +1,124 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+        <tr>
+            <th scope="col" class="rounded-company">ID</th>
+            <th scope="col" class="rounded">活动名称</th>
+            <th scope="col" class="rounded">申请人</th>
+            <th scope="col" class="rounded">人数</th>
+            <th scope="col" class="rounded">开始时间</th>
+            <th scope="col" class="rounded">状态</th>
+            <th scope="col" class="rounded">详情</th>
+            <th scope="col" class="rounded-q4">删除</th>
+        </tr>
+        </thead>
+    <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+         </tr>
+     </tfoot>
+
+    <p><small>*点击活动名称可直接查看负责人信息</small></p>
+    
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+            <td><%= rows[i]["SR_Id"] %></td>
+            <td style="text-decoration:underline; cursor:pointer" onclick="openDialog('/showFuzheren?srid=<%= rows[i]["SR_Id"] %>&act_type=0')" title="点击查看负责人信息"><%= rows[i]["SR_Title"] %></td>
+            <td style="text-decoration:underline; cursor:pointer" onclick="openDialog('/userDetDialog?userid=<%= rows[i]["User_Id"] %>')"><%= rows[i]["Name"] %></td>
+            <td><%= rows[i]["Peop_Count"] %></td>
+            <td><%= rows[i]["Start_Time"] %></td>
+            <td>
+                <% if(rows[i]["Res_Sta"] == 2) { %>
+                <%= "待宣教科人员审核" %>
+                <% } else if(rows[i]["Res_Sta"] == 0.5) { %>
+                <%= "待主管领导审核" %>
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 0 && !rows[i]['Contract_Img'] && !rows[i]['Contract_Ex']) { %>
+                <%= "通过申报,待提交合同" %>
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 0 && (rows[i]['Contract_Img'] || rows[i]['Contract_Ex'])) { %>
+                <%= "已发送合同,待审核" %>
+
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 1 && rows[i]["Result_Ok"] == 0 && !rows[i]['Result_File'] && !rows[i]['Result_Ex']) { %>
+                <%= "合同审核通过,待提交科研成果" %>
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 1 && rows[i]["Result_Ok"] == 0 && (rows[i]['Result_File'] || rows[i]['Result_Ex'])) { %>
+                <%= "已提交科研成果,待审核" %>
+                <!-- rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 1 && rows[i]["Result_Ok"] == 0 状态等效于 rows[i]["Res_Sta"] == 5 -->
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 1 && rows[i]["Result_Ok"] == 2) { %>
+                <%= "科研成果未通过审核,退回" %>
+
+
+                <% } else if(rows[i]["Res_Sta"] == 0 && rows[i]["Contract_Ok"] == 2) { %>
+                <%= "合同未通过审核,退回" %>
+
+                <% } else if(rows[i]["Res_Sta"] == 1) { %>
+                <%= "申报未通过审核,退回" %>
+                <% } else if(rows[i]["Res_Sta"] == 3) { %>
+                <%= "尚未提交申请" %>
+                <% } else if(rows[i]["Res_Sta"] == 4) { %>
+                <%= "待添加活动成员" %>
+                <% } else if(rows[i]["Res_Sta"] == 5) { %>
+                <%= "活动已结束" %>
+                <% } else if(rows[i]["Res_Sta"] == 6) { %>
+                <%= "活动已撤销" %>
+                <% } else { %>
+                <%= "状态异常" %>
+                <% } %>
+            </td>
+
+            <td>
+                <a href="/res/resAud?srid=<%= rows[i]["SR_Id"] %>">
+                <img src="/images/in/images/user_edit.png" alt="" title="" border="0" />
+                </a>
+            </td>
+
+             <td><a href="resActDel?srid=<%= rows[i]["SR_Id"] %>" class="ask"><img src="/images/in/images/trash.png" alt="" title="删除活动" border="0" /></a></td>
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+<!-- <a href="/vol/volActPub" class="bt_green"><span class="bt_green_lft"></span><strong>--</strong><span class="bt_green_r"></span></a>-->
+ <!-- <a href="#" class="bt_red"><span class="bt_red_lft"></span><strong>Delete items</strong><span class="bt_red_r"></span></a>  -->
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>

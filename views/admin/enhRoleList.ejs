@@ -1,0 +1,107 @@
+<% include ../header %>
+<div class="right_content">            
+
+    <h2><%= menu.title %></h2>
+    <%- include ../tips %>
+    
+    <table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+        <thead>
+        <tr>
+            <th scope="col" class="rounded-company">ID</th>
+            <th scope="col" class="rounded">申请人</th>
+            <th scope="col" class="rounded">当前角色</th>
+            <th scope="col" class="rounded">申请角色</th>
+            <th scope="col" class="rounded">同意</th>
+            <th scope="col" class="rounded-q4">拒绝</th>
+        </tr>
+        </thead>
+    <tfoot>
+         <tr>
+             <!-- <td colspan="6" class="rounded-foot-left"><em> </em></td>
+             <td class="rounded-foot-right">&nbsp;</td> -->
+         </tr>
+     </tfoot>
+
+     <tbody>
+
+        <% for(var i = 0; i < rows.length; i++) { %>
+         <tr>
+            <td><%= i+1 %></td>
+            <td><%= rows[i]['Name'] %></td>
+            <td>
+                <% if(rows[i]["Role"] == 0) { %>
+                <%= "管理员" %>
+                <% } else if(rows[i]["Role"]==0.5) { %>
+                <%= "主管领导" %>
+                <% } else if(rows[i]["Role"]==1) { %>
+                <%= "科研宣教科人员" %>
+                <% } else if(Math.floor(rows[i]["Role"]) >= 2) { %>
+                <%= "普通用户" %>
+                <% } %>
+            </td>
+
+            <td>
+                <% if(rows[i]["Tar_Role"] == 0) { %>
+                <%= "管理员" %>
+                <% } else if(rows[i]["Tar_Role"]==0.5) { %>
+                <%= "主管领导" %>
+                <% } else if(rows[i]["Tar_Role"]==1) { %>
+                <%= "科研宣教科人员" %>
+                <% } else if(rows[i]["Tar_Role"] >= 2) { %>
+                <%= "普通用户" %>
+                <% } %>
+            </td>
+
+            <td>
+                <a href="/admin/enhRoleAud?srid=<%= rows[i]["User_Id"] %>&opt=true">
+                <img src="/images/in/images/valid.png" alt="" title="同意申请" border="0" height=16 width=16 />
+                </a>
+            </td>
+
+            <td>
+                <a href="/admin/enhRoleAud?srid=<%= rows[i]["User_Id"] %>&opt=false">
+                <img src="/images/in/images/error.png" alt="" title="拒绝申请" border="" height=16 width=16 />
+                </a>
+            </td>
+
+         </tr>
+        <% } %>
+   
+
+     </tbody>
+ </table>
+
+
+<p></p>
+ <div class="pagination">
+    <% if(isFirstPage){ %>
+    <span class="disabled">上一页</span>
+    <% } else { %>
+    <a href="?page=<%= (page - 1) %>">上一页</a>
+    <% } %>
+
+    <% if(page - 5 > 0) { %><a href="?page=<%= (page - 5) %>"><%= page-5 %></a><% } %>
+    <% if(page - 4 > 0) { %><a href="?page=<%= (page - 4) %>"><%= page-4 %></a><% } %>
+    <% if(page - 3 > 0) { %><a href="?page=<%= (page - 3) %>"><%= page-3 %></a><% } %>
+    <% if(page - 2 > 0) { %><a href="?page=<%= (page - 2) %>"><%= page-2 %></a><% } %>
+    <% if(page - 1 > 0) { %><a href="?page=<%= (page - 1) %>"><%= page-1 %></a><% } %>
+
+    <a href=""><font color="balck"><%= page %>/<%= totalPage %></font></a>
+
+    <% if(parseInt(page) + 1 <= totalPage) { %><a href="?page=<%= parseInt(page) + 1 %>"><%= parseInt(page) + 1 %></a><% } %>
+    <% if(parseInt(page) + 2 <= totalPage) { %><a href="?page=<%= parseInt(page) + 2 %>"><%= parseInt(page) + 2 %></a><% } %>
+    <% if(parseInt(page) + 3 <= totalPage) { %><a href="?page=<%= parseInt(page) + 3 %>"><%= parseInt(page) + 3 %></a><% } %>
+    <% if(parseInt(page) + 4 <= totalPage) { %><a href="?page=<%= parseInt(page) + 4 %>"><%= parseInt(page) + 4 %></a><% } %>
+    <% if(parseInt(page) + 5 <= totalPage) { %><a href="?page=<%= parseInt(page) + 5 %>"><%= parseInt(page) + 5 %></a><% } %>
+
+    <% if(isLastPage){ %>
+    <span class="disabled">下一页</span>
+    <% } else { %>
+    <a href="?page=<%= parseInt(page) + 1 %>">下一页</a>
+    <% } %>
+</div> 
+
+</div>
+     <!-- end of right content-->
+        
+<% include ../footer %>
